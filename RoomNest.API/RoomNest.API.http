@@ -1,0 +1,6 @@
+@RoomNest.API_HostAddress = http://localhost:5117
+
+GET {{RoomNest.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

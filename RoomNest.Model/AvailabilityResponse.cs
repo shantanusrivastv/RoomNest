@@ -10,10 +10,18 @@ namespace RoomNest.Model
     {
         //public int HotelId { get; set; }
         public string HotelName { get; set; }
-        public Dictionary<RoomType, int> AvailableRoomsByType { get; set; }
-        public List<Room> RoomTypes { get; set; } = new();
-        public List<Room> AvailableRooms { get; set; }
-        public int TotalRooms => 6; //Todo
+
+        public DateTimeOffset CheckInDate { get; set; }
+        public DateTimeOffset CheckOutDate { get; set; }
+
         public int TotalAvailableRooms => AvailableRooms.Sum(x => x.Capacity);
+
+        public int NumberOfGuests { get; set; }
+        public List<Room> AvailableRooms { get; set; }
+
+       // public Dictionary<RoomType, int> AvailableRoomsType { get; set; }
+       // public List<Room> RoomTypes { get; set; } = new();
+       
+       // public int TotalRooms => 6; //Todo        
     }
 }

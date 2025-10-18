@@ -15,11 +15,11 @@ namespace RoomNest.Model
         public string ContactEmail { get; set; }
         public string ContactPhone { get; set; }
         public int TotalRooms => 6; //TODO
-        public int AvailableRooms { get; set; }
+       // public int AvailableRooms { get; set; }
         public List<RoomTypeSummary> RoomTypes { get; set; } = new();
 
         //public int MaxCapacity => RoomTypes.Any() ? RoomTypes.Max(rt => rt.Capacity) : 0;
-        public bool HasAvailableRooms => AvailableRooms > 0;
+        //public bool HasAvailableRooms => AvailableRooms > 0;
 
     }
 

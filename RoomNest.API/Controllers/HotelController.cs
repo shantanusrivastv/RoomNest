@@ -9,10 +9,22 @@ namespace RoomNest.API.Controllers
     public class HotelController : ControllerBase
     {
         // In-memory hotel list for demonstration
-        private static readonly List<Hotel> Hotels = new List<Hotel>
+        private static readonly List<HotelSearchResult> Hotels = new List<HotelSearchResult>
         {
-            new Hotel { Id = 1, Name = "Hotel Sunshine" },
-            new Hotel { Id = 2, Name = "Mountain View Inn" }
+           new HotelSearchResult()
+           {
+             HotelId = 1,
+            Name = "Grand Plaza Hotel",
+            City = "New York",
+            Address = "123 Main Street",
+            ContactEmail = "info@grandplaza.com",
+            ContactPhone = "+1-555-0101",
+            //AvailableRooms = 1,
+            RoomTypes = new List<RoomTypeSummary>()
+            {
+                new RoomTypeSummary() { RoomType = RoomType.Deluxe}
+            }
+           }
         };
 
         [HttpGet("{name}")]

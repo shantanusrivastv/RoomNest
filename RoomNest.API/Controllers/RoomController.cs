@@ -6,13 +6,13 @@ namespace RoomNest.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoomsController : ControllerBase
+    public class RoomController : ControllerBase
     {
         private static readonly List<Room> Rooms = new List<Room>
         {
-            new Room { RoomId = 1, Type = RoomType.Single},
-            new Room { RoomId = 2, Type = RoomType.Double},
-            new Room { RoomId = 3, Type = RoomType.Deluxe}
+            new Room { RoomId = 1, RoomType = RoomType.Single},
+            new Room { RoomId = 2, RoomType = RoomType.Double},
+            new Room { RoomId = 3, RoomType = RoomType.Deluxe}
         };
 
         private static readonly List<Booking> Bookings = new List<Booking>();

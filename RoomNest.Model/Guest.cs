@@ -12,6 +12,6 @@ namespace RoomNest.Model
         public string GuestEmail { get; set; }
         public string GuestPhone { get; set; }
 
-        //Guest ID Type
+        //Guest ID RoomType
     }
 }

@@ -31,9 +31,9 @@ namespace RoomNest.Model
 
     //public class HotelRoomSummary
     //{
-    //    public RoomType Type { get; set; }
+    //    public RoomType RoomType { get; set; }
     //    public int TotalCount { get; set; }
     //    public int AvailableCount { get; set; }
-    //    public int Capacity => Type == RoomType.Single? 1 : 2;
+    //    public int Capacity => RoomType == RoomType.Single? 1 : 2;
     //}
 }

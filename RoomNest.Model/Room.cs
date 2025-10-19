@@ -13,7 +13,7 @@ namespace RoomNest.Model
 
         [JsonIgnore]
         public int HotelId { get; set; }
-        public RoomType Type { get; set; }
-        public int Capacity => Type == RoomType.Single ? 1 : 2;
+        public RoomType RoomType { get; set; }
+        public int Capacity => RoomType == RoomType.Single ? 1 : 2;
     }
 }

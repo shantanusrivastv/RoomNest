@@ -27,15 +27,24 @@ namespace RoomNest.API.Controllers
            }
         };
 
-        [HttpGet("{name}")]
-        public ActionResult<Hotel> GetHotelByName(string name)
+        [HttpGet("{hotelName}")]
+        public ActionResult<Hotel> GetHotel(string hotelName)
         {
-            var hotel = Hotels.Find(h => h.Name.Contains(name, StringComparison.InvariantCultureIgnoreCase));
+            var hotel = Hotels.Find(h => h.Name.Contains(hotelName, StringComparison.InvariantCultureIgnoreCase));
             if (hotel == null)
             {
                 return NotFound();
             }
             return Ok(hotel);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<Hotel>> GetHotel([FromQuery] int id)
+        {
+            //var hotel = await _hotelRepository.GetByIdAsync(id);
+            //if (hotel == null) return NotFound();
+
+            return Ok(Hotels);
         }
     }
 }

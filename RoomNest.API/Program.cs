@@ -1,5 +1,7 @@
 
+using Microsoft.Extensions.Configuration;
 using RoomNest.Model;
+using RoomNest.Services;
 using System.Text.Json.Serialization;
 
 namespace RoomNest.API
@@ -10,6 +12,7 @@ namespace RoomNest.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
             // Add services to the container.
 
             builder.Services.AddControllers()
@@ -17,6 +20,9 @@ namespace RoomNest.API
                              {
                                  opt.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
                              });
+
+
+            ServiceConfigurationManager.ConfigurePersistence(builder.Services, builder.Configuration, builder.Environment.EnvironmentName);
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

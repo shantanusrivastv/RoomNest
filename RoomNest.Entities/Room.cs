@@ -24,6 +24,6 @@ namespace RoomNest.Entities
     {
         Single,
         Double,
-        Delux
+        Deluxe
     }
 }

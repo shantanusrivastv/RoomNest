@@ -8,11 +8,11 @@ namespace RoomNest.API.Controllers
     [Produces("application/json")]
     public class DataController : ControllerBase
     {
-        private readonly DBSeedService _dbSeedService;
+        private readonly IDBSeedService _dbSeedService;
 
-        public DataController()
+        public DataController(IDBSeedService dbSeedService)
         {
-            _dbSeedService = new DBSeedService();
+            _dbSeedService = dbSeedService;
         }
 
         /// <summary>

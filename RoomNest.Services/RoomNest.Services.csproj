@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="15.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\RoomNest.Entities\RoomNest.Entities.csproj" />
     <ProjectReference Include="..\RoomNest.Infrastructure\RoomNest.Infrastructure.csproj" />
     <ProjectReference Include="..\RoomNest.Model\RoomNest.Model.csproj" />

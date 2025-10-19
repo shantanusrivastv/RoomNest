@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\RoomNest.Common\RoomNest.Common.csproj" />
-  </ItemGroup>
-
 </Project>

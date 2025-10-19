@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoomNest.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,4 @@ namespace RoomNest.Entities
         public virtual List<Booking> Bookings { get; set; } = new();
     }
 
-    public enum RoomType
-    {
-        Single,
-        Double,
-        Deluxe
-    }
 }

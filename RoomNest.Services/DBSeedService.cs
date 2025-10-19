@@ -1,23 +1,29 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RoomNest.Common;
 using RoomNest.Entities;
 using RoomNest.Infrastructure;
 
 namespace RoomNest.Services
 {
-    public class DBSeedService
+    public class DBSeedService : IDBSeedService
     {
-        private string conn = "Data Source=.;Initial Catalog=RoomNest;User ID=sa;Password=Passw0rd;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
-        RoomNestDbContext _context;
-        public DBSeedService()
+        private readonly IRepository<Hotel> _hotelRepository;
+        private readonly IRepository<Room> _roomRepository;
+        private readonly RoomNestDbContext _context;
+
+        public DBSeedService(
+             IRepository<Hotel> hotelRepository,
+             IRepository<Room> roomRepository,
+             RoomNestDbContext context)
         {
-            var options = new DbContextOptionsBuilder<RoomNestDbContext>()
-                        .UseSqlServer(conn).Options;
-            _context = new RoomNestDbContext(options);
+            _hotelRepository = hotelRepository ?? throw new ArgumentNullException(nameof(hotelRepository));
+            _roomRepository = roomRepository ?? throw new ArgumentNullException(nameof(roomRepository));
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
         public async Task SeedAsync()
         {
             // Check if data already exists
-            if (await _context.Hotels.AnyAsync())
+            if ((await _hotelRepository.GetAllAsync()).Any())
             {
                 return; // Database already seeded
             }

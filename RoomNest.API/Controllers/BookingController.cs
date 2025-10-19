@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RoomNest.Common;
 using RoomNest.Model;
 
 namespace RoomNest.API.Controllers

@@ -29,8 +29,9 @@ namespace RoomNest.Services.Mapper
                     .OrderBy(rt => rt.RoomType)
                     .ToList()));
 
-            //CreateMap<entity.Room, model.RoomTypeSummary>();
-
+            CreateMap<entity.Room, model.Room>();
+             
+          
         }
     }
 }

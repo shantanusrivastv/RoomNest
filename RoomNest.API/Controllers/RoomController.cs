@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RoomNest.Common;
 using RoomNest.Model;
+using RoomNest.Services;
 
 namespace RoomNest.API.Controllers
 {
@@ -9,14 +10,11 @@ namespace RoomNest.API.Controllers
     [ApiController]
     public class RoomController : ControllerBase
     {
-        private static readonly List<Room> Rooms = new List<Room>
+        private readonly IRoomService _roomService;
+        public RoomController(IRoomService roomService)
         {
-            new Room { RoomId = 1, RoomType = RoomType.Single},
-            new Room { RoomId = 2, RoomType = RoomType.Double},
-            new Room { RoomId = 3, RoomType = RoomType.Deluxe}
-        };
-
-        private static readonly List<Booking> Bookings = new List<Booking>();
+            _roomService = roomService;
+        }
 
 
         [HttpPost("availability")]
@@ -34,31 +32,34 @@ namespace RoomNest.API.Controllers
 
 
                 //Need Unit Testing
-                var availableRooms = Rooms/*.Where(r => r.HotelId == request.HotelId)*/
-                                           .Where(r => !Bookings.Any(b =>
-                                                b.RoomId == r.RoomId &&
-                                                b.CheckOutDate > request.CheckInDate &&
-                                                b.CheckInDate < request.CheckOutDate
-                                                ))
-                                           .ToList();
+                //var availableRooms = Rooms/*.Where(r => r.HotelId == request.HotelId)*/
+                //                           .Where(r => !Bookings.Any(b =>
+                //                                b.RoomId == r.RoomId &&
+                //                                b.CheckOutDate > request.CheckInDate &&
+                //                                b.CheckInDate < request.CheckOutDate
+                //                                ))
+                //                           .ToList();
 
-                //request.HotelId = hotelId;
-                //var result = await _bookingService.CheckAvailabilityAsync(request);
-                var result = new AvailabilityResponse()
-                {                    
-                    HotelName = "Grant Hotel",
-                    CheckInDate = request.CheckInDate,
-                    CheckOutDate = request.CheckOutDate,
-                    NumberOfGuests = request.NumberOfPeople,
-                    AvailableRooms = availableRooms,
-                    //AvailableRoomsType = new Dictionary<RoomType, int>()
-                    //{
-                    //    {RoomType.Single, 2 },
-                    //    {RoomType.Double, 3 },
-                    //    {RoomType.Deluxe, 1 },
+                ////request.HotelId = hotelId;
+                ////var result = await _bookingService.CheckAvailabilityAsync(request);
+                //var result = new AvailabilityResponse()
+                //{                    
+                //    HotelName = "Grant Hotel",
+                //    CheckInDate = request.CheckInDate,
+                //    CheckOutDate = request.CheckOutDate,
+                //    RequestedGuestCount = request.NumberOfPeople,
+                //    AvailableRooms = availableRooms,
+                //    //AvailableRoomsType = new Dictionary<RoomType, int>()
+                //    //{
+                //    //    {RoomType.Single, 2 },
+                //    //    {RoomType.Double, 3 },
+                //    //    {RoomType.Deluxe, 1 },
 
-                    //}
-                };
+                //    //}
+                //};
+
+
+                var result = await _roomService.CheckAvailabilityAsync(request);
 
                 return Ok(result);
             }

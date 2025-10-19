@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RoomNest.Entities;
 using RoomNest.Model;
 using RoomNest.Services;
+using System.Threading;
 
 namespace RoomNest.API.Controllers
 {
@@ -14,24 +16,6 @@ namespace RoomNest.API.Controllers
         {
             _hotelService = hotelService;
         }
-        // In-memory hotel list for demonstration
-        //private static readonly List<HotelSearchResult> Hotels = new List<HotelSearchResult>
-        //{
-        //   new HotelSearchResult()
-        //   {
-        //     HotelId = 1,
-        //    Name = "Grand Plaza Hotel",
-        //    City = "New York",
-        //    Address = "123 Main Street",
-        //    ContactEmail = "info@grandplaza.com",
-        //    ContactPhone = "+1-555-0101",
-        //    //AvailableRooms = 1,
-        //    RoomTypes = new List<RoomTypeSummary>()
-        //    {
-        //        new RoomTypeSummary() { RoomType = RoomType.Deluxe}
-        //    }
-        //   }
-        //};
 
         [HttpGet("{hotelName}")]
         public async Task<IActionResult> GetHotel(string hotelName)
@@ -45,7 +29,7 @@ namespace RoomNest.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Hotel>> GetHotel([FromQuery] int id)
+        public async Task<ActionResult> GetHotel([FromQuery] int id)
         {
             var hotel = await _hotelService.FindHotelByIdAsync(id);
             if (hotel == null)

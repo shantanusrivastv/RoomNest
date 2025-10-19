@@ -9,7 +9,8 @@ namespace RoomNest.Infrastructure
 {
     public interface IRoomRepository : IRepository<Room>
     {
-        Task<IEnumerable<Room>> GetAvailableRoomsAsync(int hotelId, DateTime startDate, DateTime endDate, int numberOfGuests);
+        Task<(string HotelName, IEnumerable<Room>)> GetAvailableRoomsAsync(int hotelId, DateTimeOffset checkInDate,
+                                                        DateTimeOffset checkOutDate, int numberOfGuests);
         Task<bool> IsRoomAvailableAsync(int roomId, DateTime startDate, DateTime endDate);
     }
 }

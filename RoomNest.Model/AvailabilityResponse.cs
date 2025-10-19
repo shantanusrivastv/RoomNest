@@ -14,9 +14,10 @@ namespace RoomNest.Model
         public DateTimeOffset CheckInDate { get; set; }
         public DateTimeOffset CheckOutDate { get; set; }
 
-        public int TotalAvailableRooms => AvailableRooms.Sum(x => x.Capacity);
+        public int MaximumCapacity => AvailableRooms.Sum(x => x.Capacity);
+        public int TotalAvailableRooms => AvailableRooms.Count;
 
-        public int NumberOfGuests { get; set; }
+        public int RequestedGuestCount { get; set; }
         public List<Room> AvailableRooms { get; set; }
 
        // public Dictionary<RoomType, int> AvailableRoomsType { get; set; }

@@ -30,10 +30,8 @@ namespace RoomNest.Services
         {
             var res = await _hotelRepository.GetByIdAsync(id);
 
-            return new HotelSearchResult()
-            {
-                Name = "s"
-            };
+            var hotelSearchResult = _mapper.Map<HotelSearchResult>(res);
+            return hotelSearchResult;
         }
     }
 }

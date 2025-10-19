@@ -7,23 +7,17 @@ namespace RoomNest.Services
 {
     public class DBSeedService : IDBSeedService
     {
-        private readonly IRepository<Hotel> _hotelRepository;
-        private readonly IRepository<Room> _roomRepository;
         private readonly RoomNestDbContext _context;
 
         public DBSeedService(
-             IRepository<Hotel> hotelRepository,
-             IRepository<Room> roomRepository,
              RoomNestDbContext context)
         {
-            _hotelRepository = hotelRepository ?? throw new ArgumentNullException(nameof(hotelRepository));
-            _roomRepository = roomRepository ?? throw new ArgumentNullException(nameof(roomRepository));
-            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _context = context;
         }
         public async Task SeedAsync()
         {
             // Check if data already exists
-            if ((await _hotelRepository.GetAllAsync()).Any())
+            if (await  _context.Hotels.AnyAsync())
             {
                 return; // Database already seeded
             }
@@ -49,10 +43,20 @@ namespace RoomNest.Services
                 ContactPhone = "+44-20-12345671"
             };
 
-            await _context.Hotels.AddRangeAsync(hotel1, hotel2);
+            var hotel3 = new Entities.Hotel
+            {
+                Name = "Grand Central",
+                Address = "789 Central Avenue",
+                City = "Manchester",
+                Country = "United Kingdom",
+                ContactEmail = "info@grandcentral.com",
+                ContactPhone = "+44-20-12345672"
+            };
+
+            await _context.Hotels.AddRangeAsync(hotel1, hotel2, hotel3);
             await _context.SaveChangesAsync(); // Ensure HotelIds are generated
 
-            // Create rooms for hotel1
+            //  rooms for Hotel1
             var roomsForHotel1 = new List<Room>
         {
             new Room { HotelId = hotel1.HotelId, RoomNumber = "101", RoomType = RoomType.Single },
@@ -62,7 +66,7 @@ namespace RoomNest.Services
             new Room { HotelId = hotel1.HotelId, RoomNumber = "301", RoomType = RoomType.Deluxe }
         };
 
-            // Create rooms for hotel2
+            //  rooms for Hotel2
             var roomsForHotel2 = new List<Room>
         {
             new Room { HotelId = hotel2.HotelId, RoomNumber = "A1", RoomType = RoomType.Single },
@@ -72,9 +76,20 @@ namespace RoomNest.Services
             new Room { HotelId = hotel2.HotelId, RoomNumber = "C1", RoomType = RoomType.Deluxe }
         };
 
+            //  rooms for Hotel3
+            var roomsForHotel3 = new List<Room>
+    {
+        new Room { HotelId = hotel3.HotelId, RoomNumber = "100", RoomType = RoomType.Deluxe },
+        new Room { HotelId = hotel3.HotelId, RoomNumber = "101", RoomType = RoomType.Deluxe },
+        new Room { HotelId = hotel3.HotelId, RoomNumber = "200", RoomType = RoomType.Deluxe },
+        new Room { HotelId = hotel3.HotelId, RoomNumber = "201", RoomType = RoomType.Deluxe },
+        new Room { HotelId = hotel3.HotelId, RoomNumber = "300", RoomType = RoomType.Deluxe },
+        new Room { HotelId = hotel3.HotelId, RoomNumber = "301", RoomType = RoomType.Double }
+    };
 
             await _context.Rooms.AddRangeAsync(roomsForHotel1);
             await _context.Rooms.AddRangeAsync(roomsForHotel2);
+            await _context.Rooms.AddRangeAsync(roomsForHotel3);
             await _context.SaveChangesAsync();
         }
 

@@ -1,4 +1,6 @@
-﻿namespace RoomNest.Model
+﻿using RoomNest.Common;
+
+namespace RoomNest.Model
 {
     public class Hotel
     {

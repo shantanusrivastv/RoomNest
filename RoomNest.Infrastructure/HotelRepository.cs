@@ -18,9 +18,15 @@ namespace RoomNest.Infrastructure
             return res.ToList();
         }
 
-        public Task<Hotel> GetByIdAsync(int id)
+        public async Task<Hotel> GetByIdAsync(int id)
         {
-            return Task.FromResult(FindBy(x => x.HotelId == id).SingleOrDefault());
+            var res = await FindByAsync(x => x.HotelId == id, true);
+
+            if(res!= null && res.Count >= 1) //Todo refine it
+            {
+                return res.SingleOrDefault();
+            }
+            return null;
         }
 
        

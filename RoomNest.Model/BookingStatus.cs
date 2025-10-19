@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace RoomNest.Model
 {
-    public enum RoomType
-    {
-        Single,
-        Double,
-        Deluxe
-    }
+
 
     public enum BookingStatus
     {

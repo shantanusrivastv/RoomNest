@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RoomNest.DTO
+﻿namespace RoomNest.DTO
 {
     /// <summary>
     /// Unique booking identifier
@@ -16,6 +10,7 @@ namespace RoomNest.DTO
         /// </summary>
         /// <example>BK-2025-001234</example>
         public string BookingReference { get; set; } = String.Empty;
+
         public string GuestName { get; set; } = string.Empty;
         public string GuestEmail { get; set; } = string.Empty;
         public int NumberOfGuests { get; set; }

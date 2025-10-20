@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RoomNest.API.Middleware;
-using RoomNest.Common;
 using RoomNest.DTO;
 using RoomNest.Services;
 
@@ -16,7 +14,6 @@ namespace RoomNest.API.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-
     public class RoomController : ControllerBase
     {
         private readonly IRoomService _roomService;

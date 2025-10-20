@@ -1,18 +1,14 @@
 ﻿using AutoMapper;
 using RoomNest.DTO;
 using RoomNest.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RoomNest.Services
 {
     public class HotelService : IHotelService
     {
-        IHotelRepository _hotelRepository;
+        private readonly IHotelRepository _hotelRepository;
         private readonly IMapper _mapper;
+
         public HotelService(IHotelRepository hotelRepository, IMapper mapper)
         {
             _hotelRepository = hotelRepository;
@@ -26,6 +22,7 @@ namespace RoomNest.Services
             var hotelSearchResults = _mapper.Map<List<HotelSearchResult>>(res);
             return hotelSearchResults;
         }
+
         public async Task<HotelSearchResult> FindHotelByIdAsync(int id)
         {
             var res = await _hotelRepository.GetByIdAsync(id);

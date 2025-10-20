@@ -1,19 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using RoomNest.Common;
-using RoomNest.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using RoomNest.Entities;
 
 namespace RoomNest.Infrastructure
 {
     public class HotelRepository(RoomNestDbContext context) : BaseRepository<Hotel>(context), IHotelRepository
     {
-
         public async Task<List<Hotel>> GetByNameAsync(string name)
         {
             var res = await FindByAsync(x => x.Name.ToLower().Contains(name.ToLower()), true);
@@ -30,7 +20,5 @@ namespace RoomNest.Infrastructure
             }
             return null;
         }
-
-
     }
 }

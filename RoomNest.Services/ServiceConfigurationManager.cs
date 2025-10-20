@@ -1,16 +1,8 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using RoomNest.Infrastructure;
 using RoomNest.Services.Mapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace RoomNest.Services
 {
@@ -47,17 +39,16 @@ namespace RoomNest.Services
 
             // Services - services depend on repositories (which are scoped).
             services.AddScoped<IHotelService, HotelService>();
-            services.AddScoped<IRoomService, RoomService>();            
+            services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IBookingService, BookingService>();
 
             //stateless utilities
-            services.AddTransient<IDBSeedService, DBSeedService>();            
+            services.AddTransient<IDBSeedService, DBSeedService>();
 
             services.AddAutoMapper(cfg =>
             {
                 cfg.AddProfile<RoomNestMapper>();
             });
         }
-
     }
 }

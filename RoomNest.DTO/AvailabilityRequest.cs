@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RoomNest.DTO
 {
@@ -19,6 +14,7 @@ namespace RoomNest.DTO
         [Required(ErrorMessage = "Hotel ID is required")]
         [Range(1, int.MaxValue, ErrorMessage = "Hotel ID must be greater than 0")]
         public int HotelId { get; set; }
+
         /// <summary>
         /// Check-in date and time
         /// </summary>

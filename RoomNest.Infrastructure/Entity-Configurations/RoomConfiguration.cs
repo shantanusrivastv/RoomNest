@@ -32,5 +32,4 @@ namespace RoomNest.Infrastructure.Entity_Configurations
                 .IsUnique();
         }
     }
-
 }

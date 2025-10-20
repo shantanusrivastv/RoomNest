@@ -1,10 +1,5 @@
 ﻿using RoomNest.Common;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RoomNest.Entities
 {
@@ -16,11 +11,11 @@ namespace RoomNest.Entities
         public RoomType RoomType { get; set; }
 
         [NotMapped]
-         public int Capacity => RoomType == RoomType.Single ? 1 : 2;
+        public int Capacity => RoomType == RoomType.Single ? 1 : 2;
+
         //public decimal PricePerNight { get; set; }
-        
+
         public virtual Hotel Hotel { get; set; } // Navigation property
         public virtual List<BookedRoom> BookedRoom { get; set; } = new();
     }
-
 }

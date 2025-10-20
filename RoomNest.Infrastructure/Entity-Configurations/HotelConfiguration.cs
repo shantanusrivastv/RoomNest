@@ -25,8 +25,7 @@ namespace RoomNest.Infrastructure.Entity_Configurations
             builder.HasMany(e => e.Rooms)
                   .WithOne(r => r.Hotel)
                   .HasForeignKey(r => r.HotelId)
-                  .OnDelete(DeleteBehavior.Restrict);  // prevents accidental hotel deletion           
+                  .OnDelete(DeleteBehavior.Restrict);  // prevents accidental hotel deletion
         }
     }
-
 }

@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RoomNest.Common;
 using RoomNest.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RoomNest.Infrastructure
 {
@@ -22,7 +17,7 @@ namespace RoomNest.Infrastructure
 
             var roomIds = bookedRoom.SelectMany(b => b.BookedRoom.Select(br => br.RoomId)).ToList(); //Todo move up used for debugging
 
-            var availableRooms = FindBy(r => r.HotelId == hotelId  &&  !roomIds.Contains(r.RoomId)).AsNoTracking().ToList();
+            var availableRooms = FindBy(r => r.HotelId == hotelId && !roomIds.Contains(r.RoomId)).AsNoTracking().ToList();
             var totalCapacity = availableRooms.Sum(r => r.Capacity);
 
             if (totalCapacity < numberOfGuests)
@@ -35,11 +30,10 @@ namespace RoomNest.Infrastructure
             return (hotelName, availableRooms);
         }
 
-
         public async Task<List<Room>> GetByIdAsync(int[] roomIds)
         {
             var res = await FindByAsync(r => roomIds.Contains(r.RoomId), false);
-            if(res == null) return null;
+            if (res == null) return null;
             return res.ToList();
         }
     }

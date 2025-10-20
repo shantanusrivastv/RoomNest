@@ -12,5 +12,4 @@ namespace RoomNest.Infrastructure.Entity_Configurations
             builder.HasIndex(e => new { e.BookingId, e.RoomId }).IsUnique();
         }
     }
-
 }

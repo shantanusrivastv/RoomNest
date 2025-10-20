@@ -1,7 +1,4 @@
-﻿using Azure;
-using System.ComponentModel.DataAnnotations;
-using System.Net;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace RoomNest.API.Middleware
 {
@@ -58,7 +55,6 @@ namespace RoomNest.API.Middleware
                     errorMessage = "An unexpected error occurred. Please contact support.";
                     break;
             }
-
 
             var errorResponse = new ErrorResponse
             {

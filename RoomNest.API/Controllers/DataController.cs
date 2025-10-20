@@ -49,7 +49,7 @@ namespace RoomNest.API.Controllers
         /// Resets the database by removing all existing records.
         /// </summary>
         /// <remarks>
-        /// This operation permanently deletes all data from the database.  
+        /// This operation permanently deletes all data from the database.
         /// Use the <c>/api/data/seed</c> endpoint afterwards to reinitialise test data.
         /// </remarks>
         /// <returns>

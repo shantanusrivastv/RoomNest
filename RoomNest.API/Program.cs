@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RoomNest.API.Middleware;
 using RoomNest.API.OperationFilter;
@@ -31,7 +30,6 @@ namespace RoomNest.API
                              {
                                  opt.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
                              });
-
 
             ServiceConfigurationManager.ConfigurePersistence(builder.Services, builder.Configuration, builder.Environment.EnvironmentName);
             ServiceConfigurationManager.ConfigureServiceLifeTime(builder.Services);
@@ -71,7 +69,6 @@ namespace RoomNest.API
                 {
                     c.IncludeXmlComments(xmlPath);
                 }
-
             });
 
             var app = builder.Build();
@@ -99,7 +96,6 @@ namespace RoomNest.API
 
                 if (pendingMigrations.Any())
                 {
-                   
                     logger.LogInformation($"Applying {pendingMigrations.Count()} pending migrations...");
                     await dbContext.Database.MigrateAsync();
                     logger.LogInformation("Migrations applied successfully.");

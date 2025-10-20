@@ -1,13 +1,6 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using RoomNest.DTO;
-using RoomNest.Entities;
 using RoomNest.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RoomNest.Services
 {
@@ -15,6 +8,7 @@ namespace RoomNest.Services
     {
         private readonly IRoomRepository _roomRepository;
         private readonly IMapper _mapper;
+
         public RoomService(IRoomRepository roomRepository, IMapper mapper)
         {
             _roomRepository = roomRepository;
@@ -25,7 +19,7 @@ namespace RoomNest.Services
         {
             //todo Input validation
 
-            var (hotelName, availableRooms) = await _roomRepository.GetAvailableRoomsAsync(request.HotelId, 
+            var (hotelName, availableRooms) = await _roomRepository.GetAvailableRoomsAsync(request.HotelId,
                                                                                            request.CheckInDate,
                                                                                            request.CheckOutDate,
                                                                                            request.GuestCount);
@@ -40,7 +34,6 @@ namespace RoomNest.Services
                 RequestedGuestCount = request.GuestCount,
                 AvailableRooms = roomDtos
             };
-
         }
     }
 }

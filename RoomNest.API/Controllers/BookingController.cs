@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using RoomNest.Common;
+﻿using Microsoft.AspNetCore.Mvc;
 using RoomNest.DTO;
 using RoomNest.Services;
 

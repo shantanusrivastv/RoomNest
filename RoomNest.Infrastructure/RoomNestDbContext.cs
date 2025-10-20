@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RoomNest.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RoomNest.Infrastructure
 {
@@ -13,7 +8,6 @@ namespace RoomNest.Infrastructure
     {
         public RoomNestDbContext(DbContextOptions<RoomNestDbContext> options) : base(options)
         {
-            
         }
 
         public DbSet<Hotel> Hotels { get; set; }

@@ -1,16 +1,8 @@
 ﻿using AutoMapper;
-using Azure.Core;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using RoomNest.Common;
 using RoomNest.DTO;
 using RoomNest.Entities;
 using RoomNest.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace RoomNest.Services
 {
@@ -61,9 +53,8 @@ namespace RoomNest.Services
             {
                 var isBooked = await _bookingRepository.IsRoomBookedAsync(room.RoomId, req.CheckInDate, req.CheckOutDate);
                 if (isBooked)
-                    throw new InvalidOperationException($"Room {room.RoomId} is already booked for the selected dates");                   
-            }   
-             
+                    throw new InvalidOperationException($"Room {room.RoomId} is already booked for the selected dates");
+            }
 
             //Todo
             //var numberOfNights = (req.CheckOutDate - req.CheckInDate).Days;
@@ -80,7 +71,7 @@ namespace RoomNest.Services
                 CreatedAt = DateTimeOffset.UtcNow,
                 GuestName = req.Guest.GuestName,
                 GuestEmail = req.Guest.GuestEmail,
-                GuestPhone = req.Guest.GuestPhone                
+                GuestPhone = req.Guest.GuestPhone
             };
 
             booking.BookedRoom = requestedRooms.Select(r => new BookedRoom
@@ -91,14 +82,10 @@ namespace RoomNest.Services
 
             var confirmedBooking = await _bookingRepository.AddAsync(booking);
 
-            
-                var bookingResponse = _mapper.Map<BookingResponse>(confirmedBooking);
-                bookingResponse.Rooms = _mapper.Map<List<RoomDto>>(
-                                            confirmedBooking.BookedRoom.Select(br => br.Room));
-                return bookingResponse;
-            
-            
-            
+            var bookingResponse = _mapper.Map<BookingResponse>(confirmedBooking);
+            bookingResponse.Rooms = _mapper.Map<List<RoomDto>>(
+                                        confirmedBooking.BookedRoom.Select(br => br.Room));
+            return bookingResponse;
         }
 
         private static string GenerateBookingReference()
@@ -115,7 +102,7 @@ namespace RoomNest.Services
                 return null;
 
             var bookingResponse = _mapper.Map<BookingResponse>(booking);
-            bookingResponse.Rooms = _mapper.Map<List<RoomDto>>(booking.BookedRoom.Select(br=> br.Room));
+            bookingResponse.Rooms = _mapper.Map<List<RoomDto>>(booking.BookedRoom.Select(br => br.Room));
             return bookingResponse;
         }
     }

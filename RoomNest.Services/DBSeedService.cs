@@ -14,10 +14,11 @@ namespace RoomNest.Services
         {
             _context = context;
         }
+
         public async Task SeedAsync()
         {
             // Check if data already exists
-            if (await  _context.Hotels.AnyAsync())
+            if (await _context.Hotels.AnyAsync())
             {
                 return; // Database already seeded
             }
@@ -98,8 +99,8 @@ namespace RoomNest.Services
             // Remove all data
             _context.BookedRoom.RemoveRange(_context.BookedRoom);
             _context.Bookings.RemoveRange(_context.Bookings);
-            _context.Rooms.RemoveRange(_context.Rooms);            
-            _context.Hotels.RemoveRange(_context.Hotels);           
+            _context.Rooms.RemoveRange(_context.Rooms);
+            _context.Hotels.RemoveRange(_context.Hotels);
 
             await _context.SaveChangesAsync();
         }

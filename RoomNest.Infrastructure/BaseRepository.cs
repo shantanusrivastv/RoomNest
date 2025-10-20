@@ -1,22 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace RoomNest.Infrastructure
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class, new()
     {
-        protected readonly RoomNestDbContext  _context;
+        protected readonly RoomNestDbContext _context;
 
         public BaseRepository(RoomNestDbContext context)
         {
             _context = context;
         }
-
 
         public async Task<TEntity> AddAsync(TEntity entity)
         {
@@ -87,7 +81,7 @@ namespace RoomNest.Infrastructure
         {
             return _context.Set<TEntity>().Where(predicate);
         }
-    
+
         //public async Task<List<TEntity>> FindByAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes)
         //{
         //    var query = _context.Set<TEntity>().Where(predicate);
@@ -113,5 +107,4 @@ namespace RoomNest.Infrastructure
             return await query.ToListAsync();
         }
     }
-
 }

@@ -1,13 +1,7 @@
 ﻿using RoomNest.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RoomNest.Entities
 {
-
     public class Booking
     {
         public int BookingId { get; set; }
@@ -25,5 +19,4 @@ namespace RoomNest.Entities
         public DateTimeOffset? ModifiedAt { get; set; }
         public virtual List<BookedRoom> BookedRoom { get; set; } = new();  // Navigation property
     }
-
 }

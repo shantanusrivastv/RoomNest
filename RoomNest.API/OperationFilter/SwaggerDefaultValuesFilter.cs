@@ -24,14 +24,12 @@ namespace RoomNest.API.OperationFilter
                     parameter.Description = description.ModelMetadata?.Description;
                 }
 
-
                 if (parameter.Schema != null && description.DefaultValue != null)
                 {
                     parameter.Schema.Default = new OpenApiString(description.DefaultValue.ToString());
                 }
 
                 parameter.Required = parameter.Required | description.IsRequired;
-
             }
         }
     }

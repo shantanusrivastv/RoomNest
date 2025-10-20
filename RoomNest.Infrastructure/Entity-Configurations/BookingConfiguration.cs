@@ -26,10 +26,8 @@ namespace RoomNest.Infrastructure.Entity_Configurations
                 .HasForeignKey(e => e.BookingId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-
             builder.HasIndex(e => e.BookingReference)
                   .IsUnique();
         }
     }
-
 }

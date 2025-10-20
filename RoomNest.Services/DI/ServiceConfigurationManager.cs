@@ -14,23 +14,20 @@ namespace RoomNest.Services.DI
     {
         public static void ConfigurePersistence(IServiceCollection services, IConfiguration config, string envt)
         {
-            if (envt.Trim().ToUpper() == "DEVELOPMENT")
+            var connectionString = config.GetConnectionString("DefaultConnection");
+
+            services.AddDbContext<RoomNestDbContext>(options =>
             {
-                services.AddDbContext<RoomNestDbContext>(options =>
+                if (envt.Trim().ToUpper() == "DEVELOPMENT" ||
+                    envt.Trim().ToUpper() == "CONTAINER")
                 {
-                    options.EnableSensitiveDataLogging();// Valuable for debugging
-                    options.UseSqlServer(config.GetConnectionString("Dev"));
-                });
-            }
-            else
-            {
-                services.AddDbContext<RoomNestDbContext>(options =>
-                {
-                   //options.EnableSensitiveDataLogging();//Disabled in production
-                    options.UseSqlServer(config.GetConnectionString("Prod"),
-                            b => b.MigrationsAssembly("RoomNest.Infrastructure"));
-                });
-            }
+                    options.EnableSensitiveDataLogging();
+                    options.EnableDetailedErrors(); // Useful in dev
+                }
+                options.EnableSensitiveDataLogging();// Valuable for debugging
+                options.UseSqlServer(connectionString,
+                                    sql => sql.MigrationsAssembly("RoomNest.Infrastructure"));
+            });
         }
 
         public static void ConfigureServiceLifeTime(IServiceCollection services)

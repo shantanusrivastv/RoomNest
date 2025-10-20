@@ -17,7 +17,7 @@ namespace RoomNest.Infrastructure.Repos
                                                 && b.CheckOutDate > checkInDate)
                                             .ToListAsync();
 
-            var roomIds = bookedRoom.SelectMany(b => b.BookedRoom.Select(br => br.RoomId)).ToList(); //Todo move up used for debugging
+            var roomIds = bookedRoom.SelectMany(b => b.BookedRoom.Select(br => br.RoomId)).ToList(); //can be move up, used for debugging
 
             var availableRooms = FindBy(r => r.HotelId == hotelId && !roomIds.Contains(r.RoomId)).AsNoTracking().ToList();
             var totalCapacity = availableRooms.Sum(r => r.Capacity);

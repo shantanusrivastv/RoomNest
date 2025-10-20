@@ -17,29 +17,6 @@ namespace RoomNest.Infrastructure
             _context = context;
         }
 
-        public IQueryable<TEntity> GetAll()
-        {
-            try
-            {
-                return _context.Set<TEntity>();
-            }
-            catch (Exception)
-            {
-                throw new Exception("Couldn't retrieve entities");
-            }
-        }
-
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
-        {
-            try
-            {
-                return await _context.Set<TEntity>().ToListAsync();
-            }
-            catch (Exception)
-            {
-                throw new Exception("Couldn't retrieve entities");
-            }
-        }
 
         public async Task<TEntity> AddAsync(TEntity entity)
         {
@@ -98,7 +75,7 @@ namespace RoomNest.Infrastructure
             }
         }
 
-        //todo: Check if async is better or if IQueryable is more performant
+        //Non-async way
         public IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes)
         {
             var query = _context.Set<TEntity>().Where(predicate);
@@ -111,12 +88,12 @@ namespace RoomNest.Infrastructure
             return _context.Set<TEntity>().Where(predicate);
         }
     
-        public async Task<List<TEntity>> FindByAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes)
-        {
-            var query = _context.Set<TEntity>().Where(predicate);
-            query = includes.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
-            return await query.ToListAsync();
-        }
+        //public async Task<List<TEntity>> FindByAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes)
+        //{
+        //    var query = _context.Set<TEntity>().Where(predicate);
+        //    query = includes.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+        //    return await query.ToListAsync();
+        //}
 
         public async Task<List<TEntity>> FindByAsync(Expression<Func<TEntity, bool>> predicate, bool includeAll = false)
         {

@@ -89,7 +89,6 @@ namespace RoomNest.Services.Implementations
                 new Room { HotelId = hotel3.HotelId, RoomNumber = "501", RoomType = RoomType.Deluxe },
                 new Room { HotelId = hotel3.HotelId, RoomNumber = "502", RoomType = RoomType.Deluxe },
                 new Room { HotelId = hotel3.HotelId, RoomNumber = "503", RoomType = RoomType.Deluxe }
-        
             };
 
             await _context.Rooms.AddRangeAsync(roomsForHotel1);

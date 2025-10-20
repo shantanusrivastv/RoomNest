@@ -85,7 +85,6 @@ namespace RoomNest.Services.Tests
             Assert.Contains("sufficient capacity to accommodate 3 guests", ex.Message);
         }
 
-
         [Fact]
         public async Task CreateBookingShouldWorkWithValidRequest()
         {

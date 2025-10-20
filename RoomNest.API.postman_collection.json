@@ -258,7 +258,7 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(201);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Response contains expected booking properties\", function () {\r",
@@ -329,7 +329,7 @@
 							"pm.test(\"Response contains expected booking properties\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"\r",
-							"    pm.expect(jsonData).to.have.property('bookingReference', pm.variables.get(\"bookingReference-id\"));\r",
+							"    pm.expect(jsonData).to.have.property('bookingReference', pm.variables.get(\"bookingReference\"));\r",
 							"    pm.expect(jsonData).to.have.property('guestName');\r",
 							"    pm.expect(jsonData).to.have.property('guestEmail');\r",
 							"    pm.expect(jsonData).to.have.property('numberOfGuests');\r",

@@ -78,6 +78,7 @@ namespace RoomNest.API
             // Register global exception handling middleware BEFORE other middleware
             app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
+            app.UseCors("default");
             app.UseSwagger();
             app.UseSwaggerUI();
             app.UseAuthorization();

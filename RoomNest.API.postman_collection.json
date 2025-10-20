@@ -1,0 +1,462 @@
+{
+	"info": {
+		"_postman_id": "bf316cbe-8802-4a60-a0a6-d5c39fa600fd",
+		"name": "RoomNest.API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1636528"
+	},
+	"item": [
+		{
+			"name": "SeedData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body has success message\", function () {\r",
+							"    // Parse the response JSON\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    // Assert that the message property exists and equals the expected string\r",
+							"    pm.expect(jsonData).to.have.property(\"message\", \"Database seeded successfully.\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/Data/seed",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Data",
+						"seed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetHotelByName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is an array with expected structure\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('array');\r",
+							"    pm.expect(jsonData.length).to.be.above(0);\r",
+							"\r",
+							"    // Test first item has expected properties\r",
+							"    var hotel = jsonData[0];\r",
+							"    pm.expect(hotel).to.have.property('hotelId');\r",
+							"    pm.expect(hotel).to.have.property('name');\r",
+							"    pm.expect(hotel).to.have.property('city');\r",
+							"    pm.expect(hotel).to.have.property('address');\r",
+							"    pm.expect(hotel).to.have.property('country');\r",
+							"    pm.expect(hotel).to.have.property('contactEmail');\r",
+							"    pm.expect(hotel).to.have.property('contactPhone');\r",
+							"    pm.expect(hotel).to.have.property('totalRooms');\r",
+							"    pm.expect(hotel).to.have.property('roomTypes');\r",
+							"\r",
+							"    pm.expect(hotel.roomTypes).to.be.an('array');\r",
+							"    var firstRoomType = hotel.roomTypes[0];\r",
+							"    pm.expect(firstRoomType).to.have.property('roomType');\r",
+							"    pm.expect(firstRoomType).to.have.property('count');\r",
+							"    pm.expect(firstRoomType).to.have.property('capacity');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Hotel names include 'Grand Plaza Hotel' and 'Grand Central'\", function () {\r",
+							"    var hotelNames = pm.response.json().map(h => h.name);\r",
+							"    pm.expect(hotelNames).to.include(\"Grand Plaza Hotel\");\r",
+							"    pm.expect(hotelNames).to.include(\"Grand Central\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/Hotel/grand",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Hotel",
+						"grand"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetHotelByID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is an object with expected hotel properties\", function () {\r",
+							"    var hotel = pm.response.json();\r",
+							"    pm.expect(hotel).to.be.an('object');\r",
+							"\r",
+							"    pm.expect(hotel).to.have.property('hotelId', 1);\r",
+							"    pm.expect(hotel).to.have.property('name', \"Grand Plaza Hotel\");\r",
+							"    pm.expect(hotel).to.have.property('city', \"London\");\r",
+							"    pm.expect(hotel).to.have.property('address', \"123 Main Street\");\r",
+							"    pm.expect(hotel).to.have.property('country', \"United Kingdom\");\r",
+							"    pm.expect(hotel).to.have.property('contactEmail', \"info@grandplaza.com\");\r",
+							"    pm.expect(hotel).to.have.property('contactPhone', \"+44-20-12345678\");\r",
+							"    pm.expect(hotel).to.have.property('totalRooms', 6);\r",
+							"    pm.expect(hotel).to.have.property('roomTypes');\r",
+							"\r",
+							"    pm.expect(hotel.roomTypes).to.be.an('array').that.is.not.empty;\r",
+							"\r",
+							"    var firstRoomType = hotel.roomTypes[0];\r",
+							"    pm.expect(firstRoomType).to.have.property('roomType');\r",
+							"    pm.expect(firstRoomType).to.have.property('count');\r",
+							"    pm.expect(firstRoomType).to.have.property('capacity');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/Hotel?id=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Hotel"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Availability",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is an object with expected properties\", function () {\r",
+							"    var res = pm.response.json();\r",
+							"\r",
+							"    pm.expect(res).to.be.an('object');\r",
+							"    pm.expect(res).to.have.property('hotelName', 'Grand Plaza Hotel');\r",
+							"    pm.expect(res).to.have.property('checkInDate');\r",
+							"    pm.expect(res).to.have.property('checkOutDate');\r",
+							"    pm.expect(res).to.have.property('maximumCapacity', 10);\r",
+							"    pm.expect(res).to.have.property('totalAvailableRooms', 6);\r",
+							"    pm.expect(res).to.have.property('requestedGuestCount', 1);\r",
+							"    pm.expect(res).to.have.property('availableRooms');\r",
+							"\r",
+							"    pm.expect(res.availableRooms).to.be.an('array').that.has.lengthOf(6);\r",
+							"\r",
+							"    var firstRoom = res.availableRooms[0];\r",
+							"    pm.expect(firstRoom).to.have.property('roomId');\r",
+							"    pm.expect(firstRoom).to.have.property('roomType');\r",
+							"    pm.expect(firstRoom).to.have.property('capacity');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"hotelId\": 1,\r\n    \"checkInDate\": \"2025-10-18T17:10:19.194Z\",\r\n    \"checkOutDate\": \"2026-10-18T17:10:19.194Z\",\r\n    \"guestCount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/Room/availability",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Room",
+						"availability"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains expected booking properties\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData).to.have.property('bookingReference');\r",
+							"    pm.expect(jsonData).to.have.property('guestName');\r",
+							"    pm.expect(jsonData).to.have.property('guestEmail');\r",
+							"    pm.expect(jsonData).to.have.property('numberOfGuests');\r",
+							"    pm.expect(jsonData).to.have.property('checkInDate');\r",
+							"    pm.expect(jsonData).to.have.property('checkOutDate');\r",
+							"    pm.expect(jsonData).to.have.property('rooms');\r",
+							"    pm.expect(jsonData.rooms).to.be.an('array').that.is.not.empty;\r",
+							"    pm.expect(jsonData).to.have.property('createdAt');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"// Store booking reference in collection variable for later use\r",
+							"const responseJson = pm.response.json();\r",
+							"pm.collectionVariables.set(\"bookingReference\", responseJson.bookingReference);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"hotelId\": 1,\r\n    \"roomIds\": [\r\n        1   \r\n    ],\r\n    \"checkInDate\": \"2025-10-19T20:05:38.032Z\",\r\n    \"checkOutDate\": \"2025-11-19T20:05:38.032Z\",\r\n    \"numberOfGuests\": 1,\r\n    \"guest\": {\r\n        \"guestName\": \"Claudia Wilson\",\r\n        \"guestEmail\": \"c.wilson@waracle.com\",\r\n        \"guestPhone\": \"+44 744825451\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/Booking",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains expected booking properties\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData).to.have.property('bookingReference', pm.variables.get(\"bookingReference-id\"));\r",
+							"    pm.expect(jsonData).to.have.property('guestName');\r",
+							"    pm.expect(jsonData).to.have.property('guestEmail');\r",
+							"    pm.expect(jsonData).to.have.property('numberOfGuests');\r",
+							"    pm.expect(jsonData).to.have.property('checkInDate');\r",
+							"    pm.expect(jsonData).to.have.property('checkOutDate');\r",
+							"    pm.expect(jsonData).to.have.property('rooms');\r",
+							"    pm.expect(jsonData.rooms).to.be.an('array').that.is.not.empty;\r",
+							"    pm.expect(jsonData).to.have.property('createdAt');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/Booking/{{bookingReference}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Booking",
+						"{{bookingReference}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has success message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('message', \"Database reset successfully. Use /api/data/seed to populate with initial data.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/Data/reset",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Data",
+						"reset"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": ""
+		},
+		{
+			"key": "bookingReference",
+			"value": ""
+		}
+	]
+}

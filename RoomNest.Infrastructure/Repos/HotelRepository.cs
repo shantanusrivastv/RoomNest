@@ -1,7 +1,6 @@
 ﻿using RoomNest.Entities;
 using RoomNest.Infrastructure.DBContext;
 using RoomNest.Infrastructure.Interfaces;
-using System.Threading;
 
 namespace RoomNest.Infrastructure.Repos
 {

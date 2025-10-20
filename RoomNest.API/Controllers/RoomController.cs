@@ -11,21 +11,16 @@ namespace RoomNest.API.Controllers
     /// <remarks>
     /// This controller currently supports checking room availability based on user-provided search criteria.
     /// </remarks>
+    /// <remarks>
+    /// Initialises a new instance of the <see cref="RoomController"/> class.
+    /// </remarks>
+    /// <param name="roomService">The service responsible for room operations and availability checks.</param>
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class RoomController : ControllerBase
+    public class RoomController(IRoomService roomService) : ControllerBase
     {
-        private readonly IRoomService _roomService;
-
-        /// <summary>
-        /// Initialises a new instance of the <see cref="RoomController"/> class.
-        /// </summary>
-        /// <param name="roomService">The service responsible for room operations and availability checks.</param>
-        public RoomController(IRoomService roomService)
-        {
-            _roomService = roomService;
-        }
+        private readonly IRoomService _roomService = roomService;
 
         /// <summary>
         /// Checks room availability based on the specified search criteria.

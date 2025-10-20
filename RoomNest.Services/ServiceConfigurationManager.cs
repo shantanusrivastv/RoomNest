@@ -14,7 +14,7 @@ namespace RoomNest.Services
             {
                 services.AddDbContext<RoomNestDbContext>(options =>
                 {
-                    options.EnableSensitiveDataLogging();//Disable in production
+                    options.EnableSensitiveDataLogging();// Valuable for debugging
                     options.UseSqlServer(config.GetConnectionString("Dev"));
                 });
             }
@@ -22,7 +22,7 @@ namespace RoomNest.Services
             {
                 services.AddDbContext<RoomNestDbContext>(options =>
                 {
-                    options.EnableSensitiveDataLogging();//Disable in production
+                   //options.EnableSensitiveDataLogging();//Disabled in production
                     options.UseSqlServer(config.GetConnectionString("Prod"),
                             b => b.MigrationsAssembly("RoomNest.Infrastructure"));
                 });

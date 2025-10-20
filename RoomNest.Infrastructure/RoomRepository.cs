@@ -30,11 +30,10 @@ namespace RoomNest.Infrastructure
             return (hotelName, availableRooms);
         }
 
-        public async Task<List<Room>> GetByIdAsync(int[] roomIds)
+        public async Task<List<Room>?> GetByIdAsync(int[] roomIds)
         {
-            var res = await FindByAsync(r => roomIds.Contains(r.RoomId), false);
-            if (res == null) return null;
-            return res.ToList();
+            var res = await FindByAsync(r => roomIds.Contains(r.RoomId), false);            
+            return res?.ToList();
         }
     }
 }

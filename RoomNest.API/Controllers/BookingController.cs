@@ -7,18 +7,16 @@ namespace RoomNest.API.Controllers
     /// <summary>
     /// Provides endpoints to manage hotel room bookings, including creating and retrieving bookings.
     /// </summary>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="BookingController"/> class.
+    /// </remarks>
+    /// <param name="bookingService">The booking service used to manage booking operations.</param>
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class BookingController : ControllerBase
+    public class BookingController(IBookingService bookingService) : ControllerBase
     {
-        private readonly IBookingService _bookingService;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BookingController"/> class.
-        /// </summary>
-        /// <param name="bookingService">The booking service used to manage booking operations.</param>
-        public BookingController(IBookingService bookingService) => _bookingService = bookingService;
+        private readonly IBookingService _bookingService = bookingService;
 
         /// <summary>
         /// Creates a new booking for a room.

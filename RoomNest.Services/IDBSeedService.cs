@@ -3,7 +3,6 @@
     public interface IDBSeedService
     {
         Task ResetAsync();
-
         Task SeedAsync();
     }
 }

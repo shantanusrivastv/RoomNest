@@ -13,7 +13,7 @@ namespace RoomNest.Entities
         [NotMapped]
         public int Capacity => RoomType == RoomType.Single ? 1 : 2;
 
-        //public decimal PricePerNight { get; set; }
+        //public decimal PricePerNight { get; set; } //For next iteration work
 
         public virtual Hotel Hotel { get; set; } // Navigation property
         public virtual List<BookedRoom> BookedRoom { get; set; } = new();

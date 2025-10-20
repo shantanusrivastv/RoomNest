@@ -8,6 +8,6 @@ namespace RoomNest.Services
 
         Task<BookingResponse?> GetBookingByReferenceAsync(string bookingReference);
 
-        Task<bool> CancelBookingAsync(string bookingReference);
+        //Task<bool> CancelBookingAsync(string bookingReference); //Not required at the moment
     }
 }

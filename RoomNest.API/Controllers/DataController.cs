@@ -10,21 +10,16 @@ namespace RoomNest.API.Controllers
     /// This controller allows seeding the database with initial test data and resetting it to a clean state.
     /// Typically used in development or testing environments.
     /// </remarks>
+    /// <remarks>
+    /// Initialises a new instance of the <see cref="DataController"/> class.
+    /// </remarks>
+    /// <param name="dbSeedService">The service responsible for seeding and resetting the database.</param>
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class DataController : ControllerBase
+    public class DataController(IDBSeedService dbSeedService) : ControllerBase
     {
-        private readonly IDBSeedService _dbSeedService;
-
-        /// <summary>
-        /// Initialises a new instance of the <see cref="DataController"/> class.
-        /// </summary>
-        /// <param name="dbSeedService">The service responsible for seeding and resetting the database.</param>
-        public DataController(IDBSeedService dbSeedService)
-        {
-            _dbSeedService = dbSeedService;
-        }
+        private readonly IDBSeedService _dbSeedService = dbSeedService;
 
         /// <summary>
         /// Seeds the database with predefined test data.

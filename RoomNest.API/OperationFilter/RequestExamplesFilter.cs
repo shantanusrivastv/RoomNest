@@ -22,22 +22,22 @@
                     return;
 
                 // Set the example
-                mediaType.Example = new Microsoft.OpenApi.Any.OpenApiObject
+                mediaType.Example = new OpenApiObject
                 {
-                    ["hotelId"] = new Microsoft.OpenApi.Any.OpenApiInteger(1),
-                    ["roomIds"] = new Microsoft.OpenApi.Any.OpenApiArray
+                    ["hotelId"] = new OpenApiInteger(1),
+                    ["roomIds"] = new OpenApiArray
                     {
-                        new Microsoft.OpenApi.Any.OpenApiInteger(1),
-                        new Microsoft.OpenApi.Any.OpenApiInteger(2)
+                        new OpenApiInteger(1),
+                        new OpenApiInteger(2)
                     },
-                    ["checkInDate"] = new Microsoft.OpenApi.Any.OpenApiString("2025-10-25"),
-                    ["checkOutDate"] = new Microsoft.OpenApi.Any.OpenApiString("2025-10-28"),
-                    ["numberOfGuests"] = new Microsoft.OpenApi.Any.OpenApiInteger(2),
-                    ["guest"] = new Microsoft.OpenApi.Any.OpenApiObject
+                    ["checkInDate"] = new OpenApiString("2025-10-25"),
+                    ["checkOutDate"] = new OpenApiString("2025-10-28"),
+                    ["numberOfGuests"] = new OpenApiInteger(2),
+                    ["guest"] = new OpenApiObject
                     {
-                        ["guestName"] = new Microsoft.OpenApi.Any.OpenApiString("John Smith"),
-                        ["guestEmail"] = new Microsoft.OpenApi.Any.OpenApiString("john.smith@example.com"),
-                        ["guestPhone"] = new Microsoft.OpenApi.Any.OpenApiString("+44-123-456-7890")
+                        ["guestName"] = new OpenApiString("John Smith"),
+                        ["guestEmail"] = new OpenApiString("john.smith@example.com"),
+                        ["guestPhone"] = new OpenApiString("+44-123-456-7890")
                     }
                 };
             }

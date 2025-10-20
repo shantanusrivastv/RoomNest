@@ -1,24 +1,20 @@
 ﻿using RoomNest.Entities;
+using System.Threading;
 
 namespace RoomNest.Infrastructure
 {
     public class HotelRepository(RoomNestDbContext context) : BaseRepository<Hotel>(context), IHotelRepository
     {
-        public async Task<List<Hotel>> GetByNameAsync(string name)
+        public async Task<List<Hotel>?> GetByNameAsync(string name)
         {
-            var res = await FindByAsync(x => x.Name.ToLower().Contains(name.ToLower()), true);
-            return res.ToList();
+            var res = await FindByAsync(h => h.Name.ToLower().Contains(name.ToLower()), true);
+            return res?.ToList();
         }
 
-        public async Task<Hotel> GetByIdAsync(int id)
+        public async Task<Hotel?> GetByIdAsync(int id)
         {
-            var res = await FindByAsync(x => x.HotelId == id, true);
-
-            if (res != null && res.Count >= 1) //Todo refine it
-            {
-                return res.SingleOrDefault();
-            }
-            return null;
+            var results = await FindByAsync(x => x.HotelId == id, true);
+            return results?.SingleOrDefault();
         }
     }
 }

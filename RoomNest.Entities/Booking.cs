@@ -6,7 +6,7 @@ namespace RoomNest.Entities
     {
         public int BookingId { get; set; }
         public string BookingReference { get; set; } = Guid.NewGuid().ToString();
-        public int HotelId { get; set; }  //Todo Denormalized for faster queries
+        public int HotelId { get; set; }  //Denormalized for faster queries
         public DateTimeOffset CheckInDate { get; set; }
         public DateTimeOffset CheckOutDate { get; set; }
         public string GuestName { get; set; }

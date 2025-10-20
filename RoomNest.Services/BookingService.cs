@@ -24,12 +24,6 @@ namespace RoomNest.Services
             _mapper = mapper;
         }
 
-        public Task<bool> CancelBookingAsync(string bookingReference)
-        {
-            //Tod Implement in future iteration
-            throw new NotImplementedException();
-        }
-
         public async Task<BookingResponse> CreateBookingAsync(CreateBookingRequest req)
         {
             var hotel = await _hotelRepository.GetByIdAsync(req.HotelId) ?? throw new InvalidOperationException($"Invalid hotel ID provided: {req.HotelId}");
@@ -56,7 +50,7 @@ namespace RoomNest.Services
                     throw new InvalidOperationException($"Room {room.RoomId} is already booked for the selected dates");
             }
 
-            //Todo
+            //Todo in future iteration
             //var numberOfNights = (req.CheckOutDate - req.CheckInDate).Days;
             //var totalPrice = numberOfNights * room.PricePerNight;
 
@@ -84,7 +78,7 @@ namespace RoomNest.Services
 
             var bookingResponse = _mapper.Map<BookingResponse>(confirmedBooking);
             bookingResponse.Rooms = _mapper.Map<List<RoomDto>>(
-                                        confirmedBooking.BookedRoom.Select(br => br.Room));
+                                           confirmedBooking.BookedRoom.Select(br => br.Room));
             return bookingResponse;
         }
 

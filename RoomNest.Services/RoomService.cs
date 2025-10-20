@@ -17,8 +17,7 @@ namespace RoomNest.Services
 
         public async Task<AvailabilityResponse> CheckAvailabilityAsync(AvailabilityRequest request)
         {
-            //todo Input validation
-
+            //todo Next iteration - More thorough Input validation
             var (hotelName, availableRooms) = await _roomRepository.GetAvailableRoomsAsync(request.HotelId,
                                                                                            request.CheckInDate,
                                                                                            request.CheckOutDate,

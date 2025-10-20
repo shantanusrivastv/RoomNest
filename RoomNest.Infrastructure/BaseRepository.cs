@@ -82,13 +82,6 @@ namespace RoomNest.Infrastructure
             return _context.Set<TEntity>().Where(predicate);
         }
 
-        //public async Task<List<TEntity>> FindByAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes)
-        //{
-        //    var query = _context.Set<TEntity>().Where(predicate);
-        //    query = includes.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
-        //    return await query.ToListAsync();
-        //}
-
         public async Task<List<TEntity>> FindByAsync(Expression<Func<TEntity, bool>> predicate, bool includeAll = false)
         {
             var query = _context.Set<TEntity>().Where(predicate);
@@ -97,7 +90,7 @@ namespace RoomNest.Infrastructure
             {
                 var navigations = _context.Model.FindEntityType(typeof(TEntity))
                     ?.GetNavigations()
-                    .Select(x => x.PropertyInfo.Name)
+                    .Select(x => x.PropertyInfo?.Name)
                     .ToList() ?? new List<string>();
 
                 query = navigations.Aggregate(query, (current, navName) =>

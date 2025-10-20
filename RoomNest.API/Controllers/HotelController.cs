@@ -11,21 +11,16 @@ namespace RoomNest.API.Controllers
     /// This controller exposes operations to fetch hotel details from the system.
     /// It supports searching either by the hotel's name or its unique identifier.
     /// </remarks>
+    /// <remarks>
+    /// Initialises a new instance of the <see cref="HotelController"/> class.
+    /// </remarks>
+    /// <param name="hotelService">The service used for retrieving hotel information.</param>
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class HotelController : ControllerBase
+    public class HotelController(IHotelService hotelService) : ControllerBase
     {
-        private readonly IHotelService _hotelService;
-
-        /// <summary>
-        /// Initialises a new instance of the <see cref="HotelController"/> class.
-        /// </summary>
-        /// <param name="hotelService">The service used for retrieving hotel information.</param>
-        public HotelController(IHotelService hotelService)
-        {
-            _hotelService = hotelService;
-        }
+        private readonly IHotelService _hotelService = hotelService;
 
         /// <summary>
         /// Retrieves hotel details by hotel name.

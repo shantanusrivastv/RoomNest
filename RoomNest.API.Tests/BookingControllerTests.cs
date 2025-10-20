@@ -86,8 +86,8 @@ namespace RoomNest.API.Tests
 
             var rooms = new List<RoomDto>
             {
-                new RoomDto { RoomId = 301, HotelId = 3, RoomType = RoomType.Single },
-                new RoomDto { RoomId = 302, HotelId = 3, RoomType = RoomType.Double }
+                new() { RoomId = 301, HotelId = 3, RoomType = RoomType.Single },
+                new() { RoomId = 302, HotelId = 3, RoomType = RoomType.Double }
             };
 
             var response = new BookingResponse
@@ -153,7 +153,7 @@ namespace RoomNest.API.Tests
             var now = DateTimeOffset.UtcNow;
             var rooms = new List<RoomDto>
             {
-                new RoomDto { RoomId = 401, HotelId = 4, RoomType = RoomType.Deluxe }
+                new() { RoomId = 401, HotelId = 4, RoomType = RoomType.Deluxe }
             };
             var expected = new BookingResponse
             {

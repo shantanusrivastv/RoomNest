@@ -43,7 +43,7 @@ namespace RoomNest.Services.Tests
 
             _roomRepo.GetByIdAsync(Arg.Is<int[]>(ids => ids.SequenceEqual(new[] { 101, 102 })))
                   .Returns(new List<Room> {
-                        new Room { RoomId = 101, HotelId = 1, RoomType = RoomType.Single }
+                        new() { RoomId = 101, HotelId = 1, RoomType = RoomType.Single }
                   });
 
             var req = new CreateBookingRequest
@@ -71,8 +71,8 @@ namespace RoomNest.Services.Tests
             _hotelRepo.GetByIdAsync(1).Returns(new Hotel());
             var rooms = new List<Room>
             {
-                new Room { RoomId = 101, HotelId = 1, RoomType = RoomType.Single },
-                new Room { RoomId = 102, HotelId = 1, RoomType = RoomType.Single }
+                new() { RoomId = 101, HotelId = 1, RoomType = RoomType.Single },
+                new() { RoomId = 102, HotelId = 1, RoomType = RoomType.Single }
             };
             _roomRepo.GetByIdAsync(new[] { 101, 102 }).Returns(rooms);
 
@@ -120,7 +120,7 @@ namespace RoomNest.Services.Tests
                 GuestName = "John",
                 GuestEmail = "j@example.com",
                 GuestPhone = "123",
-                BookedRoom = new List<BookedRoom> { new BookedRoom { Room = room } }
+                BookedRoom = new List<BookedRoom> { new() { Room = room } }
             };
 
             _bookingRepo.AddAsync(Arg.Any<Booking>()).Returns(Task.FromResult(saved));
@@ -138,7 +138,7 @@ namespace RoomNest.Services.Tests
         }
 
         [Fact]
-        public async Task InvalidBookingRefrenceShouldReturnNull()
+        public async Task InvalidBookingReferenceShouldReturnNull()
         {
             _bookingRepo.GetByReferenceAsync("X").Returns(Task.FromResult<Booking?>(null));
             var result = await _service.GetBookingByReferenceAsync("X");
@@ -151,7 +151,7 @@ namespace RoomNest.Services.Tests
             var booking = new Booking
             {
                 BookingReference = "BK999",
-                BookedRoom = new List<BookedRoom> { new BookedRoom { Room = new Room { RoomId = 202 } } }
+                BookedRoom = new List<BookedRoom> { new() { Room = new Room { RoomId = 202 } } }
             };
 
             _bookingRepo.GetByReferenceAsync("BK999")

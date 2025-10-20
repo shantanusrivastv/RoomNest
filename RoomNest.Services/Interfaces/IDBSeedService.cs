@@ -1,6 +1,6 @@
 ﻿namespace RoomNest.Services.Interfaces
 {
-    public interface IDBSeedService
+    public interface IDbSeedService
     {
         Task ResetAsync();
         Task SeedAsync();

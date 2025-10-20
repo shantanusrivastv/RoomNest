@@ -73,7 +73,7 @@ namespace RoomNest.API
 
             var app = builder.Build();
 
-            await ApplyDBMigration(app);
+            await ApplyDbMigration(app);
 
             // Register global exception handling middleware BEFORE other middleware
             app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
@@ -87,7 +87,7 @@ namespace RoomNest.API
             app.Run();
         }
 
-        private static async Task ApplyDBMigration(WebApplication app)
+        private static async Task ApplyDbMigration(WebApplication app)
         {
             using (var scope = app.Services.CreateScope())
             {

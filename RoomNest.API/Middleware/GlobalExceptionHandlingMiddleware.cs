@@ -58,8 +58,8 @@ namespace RoomNest.API.Middleware
 
             var errorResponse = new ErrorResponse
             {
-                status = context.Response.StatusCode,
-                error = errorMessage
+                Status = context.Response.StatusCode,
+                Error = errorMessage
             };
 
             var payload = JsonSerializer.Serialize(errorResponse);

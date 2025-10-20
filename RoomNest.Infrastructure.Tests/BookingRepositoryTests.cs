@@ -29,8 +29,8 @@ namespace RoomNest.Infrastructure.Tests
                 HotelId = 1,
                 Name = "Test Hotel",
                 Address = "123 Test St",
-                City = "Testville",
-                Country = "Testland",
+                City = "Test City",
+                Country = "Test Country",
                 ContactEmail = "contact@test.com",
                 ContactPhone = "555-1234"
             });
@@ -71,7 +71,7 @@ namespace RoomNest.Infrastructure.Tests
             };
             booking.BookedRoom = new List<BookedRoom>
             {
-                    new BookedRoom { Booking = booking, RoomId = 101 }
+                    new() { Booking = booking, RoomId = 101 }
             };
 
             ctx.Bookings.Add(booking);
@@ -145,7 +145,7 @@ namespace RoomNest.Infrastructure.Tests
             };
             newBooking.BookedRoom = new List<BookedRoom>
             {
-                new BookedRoom { RoomId = 102, Booking = newBooking }
+                new() { RoomId = 102, Booking = newBooking }
             };
 
             // Act

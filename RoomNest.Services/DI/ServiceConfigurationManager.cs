@@ -44,7 +44,7 @@ namespace RoomNest.Services.DI
             services.AddScoped<IBookingService, BookingService>();
 
             //stateless utilities
-            services.AddTransient<IDBSeedService, DBSeedService>();
+            services.AddTransient<IDbSeedService, DbSeedService>();
 
             services.AddAutoMapper(cfg =>
             {

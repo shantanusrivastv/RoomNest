@@ -25,7 +25,7 @@ namespace RoomNest.Infrastructure.Repos
 
                 return entity;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new Exception($"{nameof(entity)} could not be saved");
             }

@@ -17,9 +17,9 @@ namespace RoomNest.API.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class DataController(IDBSeedService dbSeedService) : ControllerBase
+    public class DataController(IDbSeedService dbSeedService) : ControllerBase
     {
-        private readonly IDBSeedService _dbSeedService = dbSeedService;
+        private readonly IDbSeedService _dbSeedService = dbSeedService;
 
         /// <summary>
         /// Seeds the database with predefined test data.
@@ -45,7 +45,7 @@ namespace RoomNest.API.Controllers
         /// </summary>
         /// <remarks>
         /// This operation permanently deletes all data from the database.
-        /// Use the <c>/api/data/seed</c> endpoint afterwards to reinitialise test data.
+        /// Use the <c>/api/data/seed</c> endpoint afterward to reinitialise test data.
         /// </remarks>
         /// <returns>
         /// Returns a success message once the reset operation completes.

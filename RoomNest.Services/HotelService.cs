@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using RoomNest.DTO;
 using RoomNest.Infrastructure;
-using RoomNest.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

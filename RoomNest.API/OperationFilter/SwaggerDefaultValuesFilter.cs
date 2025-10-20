@@ -2,7 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace RoomNest.API
+namespace RoomNest.API.OperationFilter
 {
     public class SwaggerDefaultValuesFilter : IOperationFilter
     {

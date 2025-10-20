@@ -1,4 +1,4 @@
-﻿using RoomNest.Model;
+﻿using RoomNest.DTO;
 
 namespace RoomNest.Services
 {

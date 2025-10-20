@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace RoomNest.Model
+namespace RoomNest.DTO
 {
     /// <summary>
     /// Request payload for checking room availability

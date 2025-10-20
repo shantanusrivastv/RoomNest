@@ -2,9 +2,9 @@
 using Azure.Core;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using RoomNest.Common;
+using RoomNest.DTO;
 using RoomNest.Entities;
 using RoomNest.Infrastructure;
-using RoomNest.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

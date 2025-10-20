@@ -1,18 +1,17 @@
-
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RoomNest.API.Middleware;
-using RoomNest.Model;
+using RoomNest.API.OperationFilter;
+using RoomNest.Infrastructure;
 using RoomNest.Services;
 using System.Reflection;
-using System.Text.Json.Serialization;
 
 namespace RoomNest.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -77,6 +76,7 @@ namespace RoomNest.API
 
             var app = builder.Build();
 
+            await ApplyDBMigration(app);
 
             // Register global exception handling middleware BEFORE other middleware
             app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
@@ -85,10 +85,30 @@ namespace RoomNest.API
             app.UseSwaggerUI();
             app.UseAuthorization();
 
-
             app.MapControllers();
-
             app.Run();
+        }
+
+        private static async Task ApplyDBMigration(WebApplication app)
+        {
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<RoomNestDbContext>();
+                var pendingMigrations = await dbContext.Database.GetPendingMigrationsAsync();
+                var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+                if (pendingMigrations.Any())
+                {
+                   
+                    logger.LogInformation($"Applying {pendingMigrations.Count()} pending migrations...");
+                    await dbContext.Database.MigrateAsync();
+                    logger.LogInformation("Migrations applied successfully.");
+                }
+                else
+                {
+                    logger.LogInformation("Database is up to date.");
+                }
+            }
         }
     }
 }

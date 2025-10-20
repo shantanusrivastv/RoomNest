@@ -3,6 +3,6 @@
   <Project Path="RoomNest.Common/RoomNest.Common.csproj" Id="8d540ee7-6920-4cd3-850e-1462fa5e27a0" />
   <Project Path="RoomNest.Entities/RoomNest.Entities.csproj" Id="9958cd80-afbd-45a8-8474-ea437c6f97c9" />
   <Project Path="RoomNest.Infrastructure/RoomNest.Infrastructure.csproj" Id="5fd3c2ae-19c2-4fcd-a72b-5122bc32acbd" />
-  <Project Path="RoomNest.Model/RoomNest.Model.csproj" Id="84fa476b-23ad-482a-af59-f4e999e32d4e" />
+  <Project Path="RoomNest.Model/RoomNest.DTO.csproj" Id="84fa476b-23ad-482a-af59-f4e999e32d4e" />
   <Project Path="RoomNest.Services/RoomNest.Services.csproj" Id="8ae07dec-9782-494f-b5b0-249089ddc823" />
 </Solution>

@@ -1,4 +1,4 @@
-﻿namespace RoomNest.API
+﻿namespace RoomNest.API.OperationFilter
 {
     using Microsoft.OpenApi.Any;
     using Microsoft.OpenApi.Models;

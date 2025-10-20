@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using RoomNest.DTO;
 using RoomNest.Entities;
 using RoomNest.Infrastructure;
-using RoomNest.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace RoomNest.Services
                                                                                            request.CheckOutDate,
                                                                                            request.GuestCount);
 
-            var roomDtos = _mapper.Map<List<Model.RoomDto>>(availableRooms);
+            var roomDtos = _mapper.Map<List<RoomDto>>(availableRooms);
 
             return new AvailabilityResponse()
             {

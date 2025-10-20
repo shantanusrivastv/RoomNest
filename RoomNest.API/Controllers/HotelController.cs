@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RoomNest.DTO;
 using RoomNest.Entities;
-using RoomNest.Model;
 using RoomNest.Services;
 using System.Threading;
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomNest.Model
+namespace RoomNest.DTO
 {
     /// <summary>
     /// Guest information associated with a booking

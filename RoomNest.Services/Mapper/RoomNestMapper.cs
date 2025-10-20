@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
+using RoomNest.DTO;
 using RoomNest.Entities;
-using RoomNest.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using entity = RoomNest.Entities;
-using model = RoomNest.Model;
 
 namespace RoomNest.Services.Mapper
 {
@@ -15,7 +14,7 @@ namespace RoomNest.Services.Mapper
     {
         public RoomNestMapper()
         {
-            CreateMap<entity.Hotel, model.HotelSearchResult>()
+            CreateMap<entity.Hotel, HotelSearchResult>()
                     .ForMember(dest => dest.TotalRooms,
                     opt => opt.MapFrom(src => src.Rooms.Count))
 
@@ -30,7 +29,7 @@ namespace RoomNest.Services.Mapper
                     .OrderBy(rt => rt.RoomType)
                     .ToList()));
 
-            CreateMap<entity.Room, model.RoomDto>();
+            CreateMap<entity.Room, RoomDto>();
 
             CreateMap<BookedRoom, RoomDto>();
             CreateMap<Booking, BookingResponse>();

@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using RoomNest.Infrastructure;
 using RoomNest.Services.Mapper;
 using System;
@@ -8,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace RoomNest.Services
 {
@@ -42,17 +44,14 @@ namespace RoomNest.Services
             services.AddScoped(typeof(IHotelRepository), typeof(HotelRepository));
             services.AddScoped(typeof(IRoomRepository), typeof(RoomRepository));
             services.AddScoped(typeof(IBookingRepository), typeof(BookingRepository));
-                        
-            //services.AddSingleton<IPropertyMappingService, PropertyMappingService>(); //It makes sense for singleton as even automapper is the same.
-            //services.AddSingleton<IDataShaper<ReadArticle>, DataShaper<ReadArticle>>();
-            services.AddTransient<IHotelService, HotelService>();
-            services.AddTransient<IRoomService, RoomService>();
-            services.AddTransient<IDBSeedService, DBSeedService>();
-            services.AddTransient<IBookingService, BookingService>();
-            //services.AddTransient<IArticleLikeService, ArticleLikeService>();
-            //services.AddTransient<IDashboardService, DashboardService>();
 
-            //services.AddAutoMapper(typeof(RoomNestMapper)); //Todo Used to work, Profile automatically discovered
+            // Services - services depend on repositories (which are scoped).
+            services.AddScoped<IHotelService, HotelService>();
+            services.AddScoped<IRoomService, RoomService>();            
+            services.AddScoped<IBookingService, BookingService>();
+
+            //stateless utilities
+            services.AddTransient<IDBSeedService, DBSeedService>();            
 
             services.AddAutoMapper(cfg =>
             {

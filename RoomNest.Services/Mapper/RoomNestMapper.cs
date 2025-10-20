@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RoomNest.Entities;
 using RoomNest.Model;
 using System;
 using System.Collections.Generic;
@@ -29,9 +30,10 @@ namespace RoomNest.Services.Mapper
                     .OrderBy(rt => rt.RoomType)
                     .ToList()));
 
-            CreateMap<entity.Room, model.Room>();
-             
-          
+            CreateMap<entity.Room, model.RoomDto>();
+
+            CreateMap<BookedRoom, RoomDto>();
+            CreateMap<Booking, BookingResponse>();
         }
     }
 }

@@ -10,6 +10,6 @@ namespace RoomNest.Infrastructure
     public interface IBookingRepository : IRepository<Booking>
     {
         Task<Booking?> GetByReferenceAsync(string bookingReference);
-        Task<bool> HasOverlappingBookingAsync(int roomId, DateTime startDate, DateTime endDate, int? excludedBookingId = null);
+        Task<bool> IsRoomBookedAsync(int roomId, DateTimeOffset checkInDate, DateTimeOffset checkOutDate);
     }
 }

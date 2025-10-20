@@ -6,23 +6,44 @@ using System.Threading.Tasks;
 
 namespace RoomNest.Model
 {
+    /// <summary>
+    /// Response containing available rooms for the requested period
+    /// </summary>
     public class AvailabilityResponse
     {
-        //public int HotelId { get; set; }
+        /// <summary>
+        /// Name of the hotel
+        /// </summary>
         public string HotelName { get; set; }
 
+        /// <summary>
+        /// Check-in date requested
+        /// </summary>
         public DateTimeOffset CheckInDate { get; set; }
+
+        /// <summary>
+        /// Check-out date requested
+        /// </summary>
         public DateTimeOffset CheckOutDate { get; set; }
 
+        /// <summary>
+        /// Total accommodation capacity of all available rooms
+        /// </summary>
         public int MaximumCapacity => AvailableRooms.Sum(x => x.Capacity);
+
+        /// <summary>
+        /// Number of available rooms matching the criteria
+        /// </summary>
         public int TotalAvailableRooms => AvailableRooms.Count;
 
+        /// <summary>
+        /// Number of guests requested in the search
+        /// </summary>
         public int RequestedGuestCount { get; set; }
-        public List<Room> AvailableRooms { get; set; }
 
-       // public Dictionary<RoomType, int> AvailableRoomsType { get; set; }
-       // public List<Room> RoomTypes { get; set; } = new();
-       
-       // public int TotalRooms => 6; //Todo        
+        /// <summary>
+        /// List of available room details
+        /// </summary>
+        public List<RoomDto> AvailableRooms { get; set; } = new();
     }
 }

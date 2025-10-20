@@ -12,6 +12,31 @@ namespace RoomNest.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Bookings",
+                columns: table => new
+                {
+                    BookingId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookingReference = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    RoomId = table.Column<int>(type: "int", nullable: false),
+                    HotelId = table.Column<int>(type: "int", nullable: false),
+                    CheckInDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    CheckOutDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    GuestName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    GuestEmail = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    GuestPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumberOfGuests = table.Column<int>(type: "int", nullable: false),
+                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    ModifiedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bookings", x => x.BookingId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Hotels",
                 columns: table => new
                 {
@@ -51,35 +76,41 @@ namespace RoomNest.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Bookings",
+                name: "BookedRoom",
                 columns: table => new
                 {
-                    BookingId = table.Column<int>(type: "int", nullable: false)
+                    BookingRoomId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BookingReference = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    RoomId = table.Column<int>(type: "int", nullable: false),
-                    HotelId = table.Column<int>(type: "int", nullable: false),
-                    CheckInDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GuestName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    GuestEmail = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    GuestPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NumberOfGuests = table.Column<int>(type: "int", nullable: false),
-                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    BookingId = table.Column<int>(type: "int", nullable: false),
+                    RoomId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Bookings", x => x.BookingId);
+                    table.PrimaryKey("PK_BookingRooms", x => x.BookingRoomId);
                     table.ForeignKey(
-                        name: "FK_Bookings_Rooms_RoomId",
+                        name: "FK_BookingRooms_Bookings_BookingId",
+                        column: x => x.BookingId,
+                        principalTable: "Bookings",
+                        principalColumn: "BookingId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_BookingRooms_Rooms_RoomId",
                         column: x => x.RoomId,
                         principalTable: "Rooms",
                         principalColumn: "RoomId",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BookingRooms_BookingId_RoomId",
+                table: "BookedRoom",
+                columns: new[] { "BookingId", "RoomId" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BookingRooms_RoomId",
+                table: "BookedRoom",
+                column: "RoomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_BookingReference",
@@ -91,11 +122,6 @@ namespace RoomNest.Infrastructure.Migrations
                 name: "IX_Bookings_HotelId_RoomId_CheckInDate_CheckOutDate",
                 table: "Bookings",
                 columns: new[] { "HotelId", "RoomId", "CheckInDate", "CheckOutDate" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Bookings_RoomId",
-                table: "Bookings",
-                column: "RoomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Hotels_Name",
@@ -112,6 +138,9 @@ namespace RoomNest.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "BookedRoom");
+
             migrationBuilder.DropTable(
                 name: "Bookings");
 

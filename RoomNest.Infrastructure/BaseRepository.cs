@@ -43,10 +43,7 @@ namespace RoomNest.Infrastructure
 
         public async Task<TEntity> AddAsync(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
-            }
+            ArgumentNullException.ThrowIfNull(entity);
 
             try
             {
@@ -58,29 +55,6 @@ namespace RoomNest.Infrastructure
             catch (Exception ex)
             {
                 throw new Exception($"{nameof(entity)} could not be saved");
-            }
-        }
-
-        public async Task<IEnumerable<TEntity>> AddListAsync(IEnumerable<TEntity> entities)
-        {
-            if (entities == null)
-            {
-                throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
-            }
-
-            try
-            {
-                foreach (var entity in entities)
-                {
-                    await _context.AddAsync(entity);
-                }
-
-                await _context.SaveChangesAsync();
-                return entities;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"{nameof(entities)} could not be saved");
             }
         }
 
@@ -135,7 +109,6 @@ namespace RoomNest.Infrastructure
         public IQueryable<TEntity> FindByAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return _context.Set<TEntity>().Where(predicate);
-
         }
     
         public async Task<List<TEntity>> FindByAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes)
@@ -162,7 +135,6 @@ namespace RoomNest.Infrastructure
 
             return await query.ToListAsync();
         }
-
     }
 
 }

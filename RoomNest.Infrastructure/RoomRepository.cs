@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RoomNest.Common;
 using RoomNest.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,13 @@ namespace RoomNest.Infrastructure
         public async Task<(string HotelName, IEnumerable<Room>)> GetAvailableRoomsAsync(int hotelId, DateTimeOffset checkInDate,
                                                                     DateTimeOffset checkOutDate, int numberOfGuests)
         {
-            var bookedRoomIds = await _context.Bookings.Where(b => b.HotelId == hotelId
+            var bookedRoom = await _context.Bookings.Where(b => b.HotelId == hotelId
                                                 && b.Status == BookingStatus.Confirmed
                                                 && b.CheckInDate < checkOutDate
                                                 && b.CheckOutDate > checkInDate)
                                             .ToListAsync();
 
-            var roomIds = bookedRoomIds.Select(r => r.RoomId).ToList(); //Todo move up used for debugging
+            var roomIds = bookedRoom.SelectMany(b => b.BookedRoom.Select(br => br.RoomId)).ToList(); //Todo move up used for debugging
 
             var availableRooms = FindBy(r => r.HotelId == hotelId  &&  !roomIds.Contains(r.RoomId)).AsNoTracking().ToList();
             var totalCapacity = availableRooms.Sum(r => r.Capacity);
@@ -34,10 +35,12 @@ namespace RoomNest.Infrastructure
             return (hotelName, availableRooms);
         }
 
-        public Task<bool> IsRoomAvailableAsync(int roomId, DateTime startDate, DateTime endDate)
+
+        public async Task<List<Room>> GetByIdAsync(int[] roomIds)
         {
-            throw new NotImplementedException();
+            var res = await FindByAsync(r => roomIds.Contains(r.RoomId), false);
+            if(res == null) return null;
+            return res.ToList();
         }
     }
 }
-

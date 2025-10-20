@@ -96,9 +96,10 @@ namespace RoomNest.Services
         public async Task ResetAsync()
         {
             // Remove all data
+            _context.BookedRoom.RemoveRange(_context.BookedRoom);
             _context.Bookings.RemoveRange(_context.Bookings);
-            _context.Rooms.RemoveRange(_context.Rooms);
-            _context.Hotels.RemoveRange(_context.Hotels);
+            _context.Rooms.RemoveRange(_context.Rooms);            
+            _context.Hotels.RemoveRange(_context.Hotels);           
 
             await _context.SaveChangesAsync();
         }

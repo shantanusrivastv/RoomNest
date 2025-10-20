@@ -20,4 +20,8 @@
     <ProjectReference Include="..\RoomNest.Entities\RoomNest.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

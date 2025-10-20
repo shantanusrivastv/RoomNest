@@ -9,8 +9,8 @@ namespace RoomNest.Services
 {
     public interface IBookingService
     {
-        Task<BookingResponse> CreateBookingAsync(Booking booking);
-        Task<BookingResponse?> GetBookingByReferenceAsync(string reference);
-        Task<bool> CancelBookingAsync(string reference);
+        Task<BookingResponse> CreateBookingAsync(CreateBookingRequest req);
+        Task<BookingResponse?> GetBookingByReferenceAsync(string bookingReference);
+        Task<bool> CancelBookingAsync(string bookingReference);
     }
 }

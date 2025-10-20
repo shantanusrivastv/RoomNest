@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RoomNest.Infrastructure;
 
@@ -11,9 +12,11 @@ using RoomNest.Infrastructure;
 namespace RoomNest.Infrastructure.Migrations
 {
     [DbContext(typeof(RoomNestDbContext))]
-    partial class RoomNestDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251019223157_Fixed Booking")]
+    partial class FixedBooking
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,30 +24,6 @@ namespace RoomNest.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("RoomNest.Entities.BookedRoom", b =>
-                {
-                    b.Property<int>("BookingRoomId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingRoomId"));
-
-                    b.Property<int>("BookingId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookingRoomId");
-
-                    b.HasIndex("RoomId");
-
-                    b.HasIndex("BookingId", "RoomId")
-                        .IsUnique();
-
-                    b.ToTable("BookedRoom", (string)null);
-                });
 
             modelBuilder.Entity("RoomNest.Entities.Booking", b =>
                 {
@@ -103,7 +82,31 @@ namespace RoomNest.Infrastructure.Migrations
                     b.HasIndex("BookingReference")
                         .IsUnique();
 
-                    b.ToTable("Bookings", (string)null);
+                    b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("RoomNest.Entities.BookedRoom", b =>
+                {
+                    b.Property<int>("BookingRoomId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingRoomId"));
+
+                    b.Property<int>("BookingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingRoomId");
+
+                    b.HasIndex("RoomId");
+
+                    b.HasIndex("BookingId", "RoomId")
+                        .IsUnique();
+
+                    b.ToTable("BookedRoom");
                 });
 
             modelBuilder.Entity("RoomNest.Entities.Hotel", b =>
@@ -146,7 +149,7 @@ namespace RoomNest.Infrastructure.Migrations
 
                     b.HasIndex("Name");
 
-                    b.ToTable("Hotels", (string)null);
+                    b.ToTable("Hotels");
                 });
 
             modelBuilder.Entity("RoomNest.Entities.Room", b =>
@@ -174,7 +177,7 @@ namespace RoomNest.Infrastructure.Migrations
                     b.HasIndex("HotelId", "RoomNumber")
                         .IsUnique();
 
-                    b.ToTable("Rooms", (string)null);
+                    b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("RoomNest.Entities.BookedRoom", b =>

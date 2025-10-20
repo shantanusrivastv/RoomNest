@@ -28,16 +28,16 @@ namespace RoomNest.Services
             var (hotelName, availableRooms) = await _roomRepository.GetAvailableRoomsAsync(request.HotelId, 
                                                                                            request.CheckInDate,
                                                                                            request.CheckOutDate,
-                                                                                           request.NumberOfPeople);
+                                                                                           request.GuestCount);
 
-            var roomDtos = _mapper.Map<List<Model.Room>>(availableRooms);
+            var roomDtos = _mapper.Map<List<Model.RoomDto>>(availableRooms);
 
             return new AvailabilityResponse()
             {
                 HotelName = hotelName ?? "Hotel not found",
                 CheckInDate = request.CheckInDate,
                 CheckOutDate = request.CheckOutDate,
-                RequestedGuestCount = request.NumberOfPeople,
+                RequestedGuestCount = request.GuestCount,
                 AvailableRooms = roomDtos
             };
 

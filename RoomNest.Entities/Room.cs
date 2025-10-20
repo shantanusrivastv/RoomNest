@@ -20,7 +20,7 @@ namespace RoomNest.Entities
         //public decimal PricePerNight { get; set; }
         
         public virtual Hotel Hotel { get; set; } // Navigation property
-        public virtual List<Booking> Bookings { get; set; } = new();
+        public virtual List<BookedRoom> BookedRoom { get; set; } = new();
     }
 
 }

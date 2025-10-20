@@ -11,6 +11,7 @@ namespace RoomNest.Infrastructure
     {
         Task<(string HotelName, IEnumerable<Room>)> GetAvailableRoomsAsync(int hotelId, DateTimeOffset checkInDate,
                                                         DateTimeOffset checkOutDate, int numberOfGuests);
-        Task<bool> IsRoomAvailableAsync(int roomId, DateTime startDate, DateTime endDate);
+        Task<List<Room>> GetByIdAsync(int[] roomIds);
+
     }
 }

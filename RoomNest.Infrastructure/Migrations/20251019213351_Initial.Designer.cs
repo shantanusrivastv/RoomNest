@@ -12,7 +12,7 @@ using RoomNest.Infrastructure;
 namespace RoomNest.Infrastructure.Migrations
 {
     [DbContext(typeof(RoomNestDbContext))]
-    [Migration("20251019100541_Initial")]
+    [Migration("20251019213351_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -38,14 +38,14 @@ namespace RoomNest.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("CheckInDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("CheckInDate")
+                        .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTime>("CheckOutDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("CheckOutDate")
+                        .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("GuestEmail")
                         .IsRequired()
@@ -64,8 +64,8 @@ namespace RoomNest.Infrastructure.Migrations
                     b.Property<int>("HotelId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset?>("ModifiedAt")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<int>("NumberOfGuests")
                         .HasColumnType("int");
@@ -85,11 +85,33 @@ namespace RoomNest.Infrastructure.Migrations
                     b.HasIndex("BookingReference")
                         .IsUnique();
 
-                    b.HasIndex("RoomId");
-
                     b.HasIndex("HotelId", "RoomId", "CheckInDate", "CheckOutDate");
 
                     b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("RoomNest.Entities.BookedRoom", b =>
+                {
+                    b.Property<int>("BookingRoomId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingRoomId"));
+
+                    b.Property<int>("BookingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingRoomId");
+
+                    b.HasIndex("RoomId");
+
+                    b.HasIndex("BookingId", "RoomId")
+                        .IsUnique();
+
+                    b.ToTable("BookedRoom");
                 });
 
             modelBuilder.Entity("RoomNest.Entities.Hotel", b =>
@@ -163,13 +185,21 @@ namespace RoomNest.Infrastructure.Migrations
                     b.ToTable("Rooms");
                 });
 
-            modelBuilder.Entity("RoomNest.Entities.Booking", b =>
+            modelBuilder.Entity("RoomNest.Entities.BookedRoom", b =>
                 {
+                    b.HasOne("RoomNest.Entities.Booking", "Booking")
+                        .WithMany("BookedRoom")
+                        .HasForeignKey("BookingId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("RoomNest.Entities.Room", "Room")
-                        .WithMany("Bookings")
+                        .WithMany("BookedRoom")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Booking");
 
                     b.Navigation("Room");
                 });
@@ -185,6 +215,11 @@ namespace RoomNest.Infrastructure.Migrations
                     b.Navigation("Hotel");
                 });
 
+            modelBuilder.Entity("RoomNest.Entities.Booking", b =>
+                {
+                    b.Navigation("BookedRoom");
+                });
+
             modelBuilder.Entity("RoomNest.Entities.Hotel", b =>
                 {
                     b.Navigation("Rooms");
@@ -192,7 +227,7 @@ namespace RoomNest.Infrastructure.Migrations
 
             modelBuilder.Entity("RoomNest.Entities.Room", b =>
                 {
-                    b.Navigation("Bookings");
+                    b.Navigation("BookedRoom");
                 });
 #pragma warning restore 612, 618
         }

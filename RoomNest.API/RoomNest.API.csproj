@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RoomNest.Model\RoomNest.DTO.csproj" />
+    <ProjectReference Include="..\RoomNest.DTO\RoomNest.DTO.csproj" />
     <ProjectReference Include="..\RoomNest.Services\RoomNest.Services.csproj" />
   </ItemGroup>
 

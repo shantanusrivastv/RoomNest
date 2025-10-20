@@ -34,7 +34,7 @@ namespace RoomNest.DTO
         /// </summary>
         /// <example>2</example>
         [Required(ErrorMessage = "Guest count is required")]
-        [Range(1, 10, ErrorMessage = "Guest count must be between 1 and 10")]
+        [Range(1, 12, ErrorMessage = "Guest count must be between 1 and 12")]
         public int GuestCount { get; set; }
     }
 }

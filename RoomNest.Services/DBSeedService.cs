@@ -59,34 +59,37 @@ namespace RoomNest.Services
 
             //  rooms for Hotel1
             var roomsForHotel1 = new List<Room>
-        {
-            new Room { HotelId = hotel1.HotelId, RoomNumber = "101", RoomType = RoomType.Single },
-            new Room { HotelId = hotel1.HotelId, RoomNumber = "102", RoomType = RoomType.Single },
-            new Room { HotelId = hotel1.HotelId, RoomNumber = "201", RoomType = RoomType.Double },
-            new Room { HotelId = hotel1.HotelId, RoomNumber = "202", RoomType = RoomType.Double },
-            new Room { HotelId = hotel1.HotelId, RoomNumber = "301", RoomType = RoomType.Deluxe }
-        };
+            {
+                new Room { HotelId = hotel1.HotelId, RoomNumber = "101", RoomType = RoomType.Single },
+                new Room { HotelId = hotel1.HotelId, RoomNumber = "102", RoomType = RoomType.Single },
+                new Room { HotelId = hotel1.HotelId, RoomNumber = "201", RoomType = RoomType.Double },
+                new Room { HotelId = hotel1.HotelId, RoomNumber = "202", RoomType = RoomType.Double },
+                new Room { HotelId = hotel1.HotelId, RoomNumber = "203", RoomType = RoomType.Double },
+                new Room { HotelId = hotel1.HotelId, RoomNumber = "301", RoomType = RoomType.Deluxe }
+            };
 
             //  rooms for Hotel2
             var roomsForHotel2 = new List<Room>
-        {
-            new Room { HotelId = hotel2.HotelId, RoomNumber = "A1", RoomType = RoomType.Single },
-            new Room { HotelId = hotel2.HotelId, RoomNumber = "A2", RoomType = RoomType.Single },
-            new Room { HotelId = hotel2.HotelId, RoomNumber = "B1", RoomType = RoomType.Double },
-            new Room { HotelId = hotel2.HotelId, RoomNumber = "B2", RoomType = RoomType.Double },
-            new Room { HotelId = hotel2.HotelId, RoomNumber = "C1", RoomType = RoomType.Deluxe }
-        };
+            {
+                new Room { HotelId = hotel2.HotelId, RoomNumber = "A1", RoomType = RoomType.Single },
+                new Room { HotelId = hotel2.HotelId, RoomNumber = "A2", RoomType = RoomType.Single },
+                new Room { HotelId = hotel2.HotelId, RoomNumber = "A3", RoomType = RoomType.Single },
+                new Room { HotelId = hotel2.HotelId, RoomNumber = "B1", RoomType = RoomType.Double },
+                new Room { HotelId = hotel2.HotelId, RoomNumber = "B2", RoomType = RoomType.Double },
+                new Room { HotelId = hotel2.HotelId, RoomNumber = "C1", RoomType = RoomType.Deluxe }
+            };
 
             //  rooms for Hotel3
             var roomsForHotel3 = new List<Room>
-    {
-        new Room { HotelId = hotel3.HotelId, RoomNumber = "100", RoomType = RoomType.Deluxe },
-        new Room { HotelId = hotel3.HotelId, RoomNumber = "101", RoomType = RoomType.Deluxe },
-        new Room { HotelId = hotel3.HotelId, RoomNumber = "200", RoomType = RoomType.Deluxe },
-        new Room { HotelId = hotel3.HotelId, RoomNumber = "201", RoomType = RoomType.Deluxe },
-        new Room { HotelId = hotel3.HotelId, RoomNumber = "300", RoomType = RoomType.Deluxe },
-        new Room { HotelId = hotel3.HotelId, RoomNumber = "301", RoomType = RoomType.Double }
-    };
+            {
+                new Room { HotelId = hotel3.HotelId, RoomNumber = "X1",  RoomType = RoomType.Single },
+                new Room { HotelId = hotel3.HotelId, RoomNumber = "X2",  RoomType = RoomType.Double },
+                new Room { HotelId = hotel3.HotelId, RoomNumber = "500", RoomType = RoomType.Deluxe },
+                new Room { HotelId = hotel3.HotelId, RoomNumber = "501", RoomType = RoomType.Deluxe },
+                new Room { HotelId = hotel3.HotelId, RoomNumber = "502", RoomType = RoomType.Deluxe },
+                new Room { HotelId = hotel3.HotelId, RoomNumber = "503", RoomType = RoomType.Deluxe }
+        
+            };
 
             await _context.Rooms.AddRangeAsync(roomsForHotel1);
             await _context.Rooms.AddRangeAsync(roomsForHotel2);

@@ -10,7 +10,6 @@
         /// </summary>
         /// <example>BK-2025-001234</example>
         public string BookingReference { get; set; } = String.Empty;
-
         public string GuestName { get; set; } = string.Empty;
         public string GuestEmail { get; set; } = string.Empty;
         public int NumberOfGuests { get; set; }

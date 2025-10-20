@@ -27,8 +27,8 @@
                     ["hotelId"] = new Microsoft.OpenApi.Any.OpenApiInteger(1),
                     ["roomIds"] = new Microsoft.OpenApi.Any.OpenApiArray
                     {
-                        new Microsoft.OpenApi.Any.OpenApiInteger(101),
-                        new Microsoft.OpenApi.Any.OpenApiInteger(102)
+                        new Microsoft.OpenApi.Any.OpenApiInteger(1),
+                        new Microsoft.OpenApi.Any.OpenApiInteger(2)
                     },
                     ["checkInDate"] = new Microsoft.OpenApi.Any.OpenApiString("2025-10-25"),
                     ["checkOutDate"] = new Microsoft.OpenApi.Any.OpenApiString("2025-10-28"),

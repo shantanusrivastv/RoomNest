@@ -1,7 +1,9 @@
 ﻿using RoomNest.Entities;
+using RoomNest.Infrastructure.DBContext;
+using RoomNest.Infrastructure.Interfaces;
 using System.Threading;
 
-namespace RoomNest.Infrastructure
+namespace RoomNest.Infrastructure.Repos
 {
     public class HotelRepository(RoomNestDbContext context) : BaseRepository<Hotel>(context), IHotelRepository
     {

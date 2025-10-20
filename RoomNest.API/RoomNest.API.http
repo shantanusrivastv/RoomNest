@@ -1,9 +1,0 @@
-@RoomNest.API_HostAddress = http://localhost:5117
-### Fetch hotel by name
-GET {{RoomNest.API_HostAddress}}/api/Hotel/gr
-Accept: application/json
-
-### Fetch hotel by ID
-
-GET {{RoomNest.API_HostAddress}}/api/Hotel?id=1
-Accept: application/json

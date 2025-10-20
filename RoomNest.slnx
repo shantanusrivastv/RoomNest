@@ -1,11 +1,21 @@
 <Solution>
-  <Project Path="RoomNest.API.Tests/RoomNest.API.Tests.csproj" Id="e5961087-a790-4d52-acdf-19f42b6075ae" />
-  <Project Path="RoomNest.API/RoomNest.API.csproj" Id="1a783165-6db9-467d-8d0d-3db3b7dfd2f2" />
-  <Project Path="RoomNest.Common/RoomNest.Common.csproj" Id="8d540ee7-6920-4cd3-850e-1462fa5e27a0" />
-  <Project Path="RoomNest.DTO/RoomNest.DTO.csproj" Id="84fa476b-23ad-482a-af59-f4e999e32d4e" />
-  <Project Path="RoomNest.Entities/RoomNest.Entities.csproj" Id="9958cd80-afbd-45a8-8474-ea437c6f97c9" />
-  <Project Path="RoomNest.Infrastructure.Tests/RoomNest.Infrastructure.Tests.csproj" Id="72f2178a-2450-49b2-98ee-eae7046ac2de" />
-  <Project Path="RoomNest.Infrastructure/RoomNest.Infrastructure.csproj" Id="5fd3c2ae-19c2-4fcd-a72b-5122bc32acbd" />
-  <Project Path="RoomNest.Services.Tests/RoomNest.Services.Tests.csproj" Id="e5643690-7b85-4d32-bac5-8c5ec49b2ccd" />
-  <Project Path="RoomNest.Services/RoomNest.Services.csproj" Id="8ae07dec-9782-494f-b5b0-249089ddc823" />
+  <Folder Name="/API/">
+    <Project Path="RoomNest.API/RoomNest.API.csproj" Id="1a783165-6db9-467d-8d0d-3db3b7dfd2f2" />
+  </Folder>
+  <Folder Name="/Application/">
+    <Project Path="RoomNest.Common/RoomNest.Common.csproj" Id="8d540ee7-6920-4cd3-850e-1462fa5e27a0" />
+    <Project Path="RoomNest.DTO/RoomNest.DTO.csproj" Id="84fa476b-23ad-482a-af59-f4e999e32d4e" />
+  </Folder>
+  <Folder Name="/Persistence/">
+    <Project Path="RoomNest.Entities/RoomNest.Entities.csproj" Id="9958cd80-afbd-45a8-8474-ea437c6f97c9" />
+    <Project Path="RoomNest.Infrastructure/RoomNest.Infrastructure.csproj" Id="5fd3c2ae-19c2-4fcd-a72b-5122bc32acbd" />
+  </Folder>
+  <Folder Name="/Services/">
+    <Project Path="RoomNest.Services/RoomNest.Services.csproj" Id="8ae07dec-9782-494f-b5b0-249089ddc823" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="RoomNest.API.Tests/RoomNest.API.Tests.csproj" Id="e5961087-a790-4d52-acdf-19f42b6075ae" />
+    <Project Path="RoomNest.Infrastructure.Tests/RoomNest.Infrastructure.Tests.csproj" Id="72f2178a-2450-49b2-98ee-eae7046ac2de" />
+    <Project Path="RoomNest.Services.Tests/RoomNest.Services.Tests.csproj" Id="e5643690-7b85-4d32-bac5-8c5ec49b2ccd" />
+  </Folder>
 </Solution>

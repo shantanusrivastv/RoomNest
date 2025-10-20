@@ -2,8 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using RoomNest.API.Middleware;
 using RoomNest.API.OperationFilter;
-using RoomNest.Infrastructure;
-using RoomNest.Services;
+using RoomNest.Infrastructure.DBContext;
+using RoomNest.Services.DI;
 using System.Reflection;
 
 namespace RoomNest.API

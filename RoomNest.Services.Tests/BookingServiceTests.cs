@@ -3,10 +3,10 @@ using NSubstitute;
 using RoomNest.Common;
 using RoomNest.DTO;
 using RoomNest.Entities;
-using RoomNest.Infrastructure;
-using RoomNest.Services;
+using RoomNest.Infrastructure.Interfaces;
+using RoomNest.Services.Implementations;
 
-namespace RoomNest.Tests.Services
+namespace RoomNest.Services.Tests
 {
     public class BookingServiceTests
     {

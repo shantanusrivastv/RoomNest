@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RoomNest.Infrastructure.DBContext;
+using RoomNest.Infrastructure.Interfaces;
 using System.Linq.Expressions;
 
-namespace RoomNest.Infrastructure
+namespace RoomNest.Infrastructure.Repos
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class, new()
     {

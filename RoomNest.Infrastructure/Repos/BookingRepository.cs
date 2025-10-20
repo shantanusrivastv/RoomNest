@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RoomNest.Common;
 using RoomNest.Entities;
+using RoomNest.Infrastructure.DBContext;
+using RoomNest.Infrastructure.Interfaces;
 
-namespace RoomNest.Infrastructure
+namespace RoomNest.Infrastructure.Repos
 {
     public class BookingRepository(RoomNestDbContext context) : BaseRepository<Booking>(context), IBookingRepository
     {

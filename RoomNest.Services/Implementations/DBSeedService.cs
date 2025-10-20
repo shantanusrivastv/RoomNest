@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RoomNest.Common;
 using RoomNest.Entities;
-using RoomNest.Infrastructure;
+using RoomNest.Infrastructure.DBContext;
+using RoomNest.Services.Interfaces;
 
-namespace RoomNest.Services
+namespace RoomNest.Services.Implementations
 {
     public class DBSeedService : IDBSeedService
     {

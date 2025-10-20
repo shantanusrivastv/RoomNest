@@ -1,6 +1,6 @@
 ﻿using RoomNest.DTO;
 
-namespace RoomNest.Services
+namespace RoomNest.Services.Interfaces
 {
     public interface IBookingService
     {

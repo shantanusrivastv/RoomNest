@@ -2,7 +2,7 @@
 using RoomNest.Entities;
 using System.Reflection;
 
-namespace RoomNest.Infrastructure
+namespace RoomNest.Infrastructure.DBContext
 {
     public class RoomNestDbContext : DbContext
     {

@@ -1,6 +1,6 @@
 ﻿using RoomNest.Entities;
 
-namespace RoomNest.Infrastructure
+namespace RoomNest.Infrastructure.Interfaces
 {
     public interface IHotelRepository : IRepository<Hotel>
     {

@@ -2,9 +2,10 @@
 using RoomNest.Common;
 using RoomNest.DTO;
 using RoomNest.Entities;
-using RoomNest.Infrastructure;
+using RoomNest.Infrastructure.Interfaces;
+using RoomNest.Services.Interfaces;
 
-namespace RoomNest.Services
+namespace RoomNest.Services.Implementations
 {
     public class BookingService : IBookingService
     {

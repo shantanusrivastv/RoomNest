@@ -1,10 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RoomNest.Infrastructure;
+using RoomNest.Infrastructure.DBContext;
+using RoomNest.Infrastructure.Interfaces;
+using RoomNest.Infrastructure.Repos;
+using RoomNest.Services.Implementations;
+using RoomNest.Services.Interfaces;
 using RoomNest.Services.Mapper;
 
-namespace RoomNest.Services
+namespace RoomNest.Services.DI
 {
     public static class ServiceConfigurationManager
     {

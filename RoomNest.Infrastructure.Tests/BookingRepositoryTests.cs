@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using RoomNest.Common;
 using RoomNest.Entities;
+using RoomNest.Infrastructure.DBContext;
+using RoomNest.Infrastructure.Repos;
 
 namespace RoomNest.Infrastructure.Tests
 {

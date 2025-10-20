@@ -3,9 +3,9 @@ using NSubstitute;
 using RoomNest.API.Controllers;
 using RoomNest.Common;
 using RoomNest.DTO;
-using RoomNest.Services;
+using RoomNest.Services.Interfaces;
 
-namespace RoomNest.Tests.Controllers
+namespace RoomNest.API.Tests
 {
     public class BookingControllerTests
     {

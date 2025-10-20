@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RoomNest.Services;
+using RoomNest.Services.Interfaces;
 
 namespace RoomNest.API.Controllers
 {

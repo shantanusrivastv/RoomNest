@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace RoomNest.Infrastructure
+namespace RoomNest.Infrastructure.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class, new()
     {

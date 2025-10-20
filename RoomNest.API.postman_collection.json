@@ -452,11 +452,11 @@
 	"variable": [
 		{
 			"key": "baseURL",
-			"value": ""
+			"value": "http://localhost:5117"
 		},
 		{
 			"key": "bookingReference",
-			"value": ""
+			"value": "InValid"
 		}
 	]
 }
